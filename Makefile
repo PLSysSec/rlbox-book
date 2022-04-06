@@ -4,6 +4,7 @@ serve: book
 	mdbook serve
 
 deploy: book
+	-git worktree remove /tmp/rlbox-book-gh-pages
 	@echo "====> deploying to github"
 	git worktree add /tmp/rlbox-book-gh-pages gh-pages
 	mdbook build
