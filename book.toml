@@ -4,5 +4,3 @@ language = "en"
 multilingual = false
 src = "src"
 title = "Practical third-party library sandboxing with RLBox"
-
-[output.linkcheck]
