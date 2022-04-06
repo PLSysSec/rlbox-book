@@ -1,0 +1,8 @@
+[book]
+authors = ["Shravan Narayan", "Deian Stefan"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Practical third-party library sandboxing with RLBox"
+
+[output.linkcheck]
