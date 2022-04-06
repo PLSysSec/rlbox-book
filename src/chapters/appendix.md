@@ -6,7 +6,7 @@
   is a great way to do this.
 
 * Working through the [simple library example
-  repo](https://github.com/shravanrn/simple_library_example>) is a good way to
+  repo](https://github.com/shravanrn/simple_library_example) is a good way to
   get a feel for retrofitting a simple application that uses a potentially
   buggy library is a good next. The solution is available in the solution
   folder in the same repo.
