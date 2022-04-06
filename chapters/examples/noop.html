@@ -1,0 +1,420 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Sandboxing a simple library - Practical third-party library sandboxing with RLBox</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../overview.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../chapters/install.html"><strong aria-hidden="true">1.1.</strong> Build and install RLBox</a></li><li class="chapter-item expanded "><a href="../../chapters/examples/noop.html" class="active"><strong aria-hidden="true">1.2.</strong> Sandboxing a simple library</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Core RLBox API</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">2.1.</strong> Creating, managing, and destroying sandboxe</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.2.</strong> Calling sandboxed functions</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.3.</strong> Creating, manipulating, and verifying tainted values</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.4.</strong> Allocating and managing sandbox memory</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.5.</strong> Exposing callbacks to sandboxed code</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.6.</strong> Standard Library</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> Sandbox mechanisms</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">3.1.</strong> Wasm with wasm2c</div></li></ol></li><li class="chapter-item expanded "><a href="../../chapters/appendix.html"><strong aria-hidden="true">4.</strong> Additional material</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Practical third-party library sandboxing with RLBox</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="sandboxing-a-simple-library"><a class="header" href="#sandboxing-a-simple-library">Sandboxing a simple library</a></h1>
+<p>To get a feel for what it's like to use RLBox, we're going to sandbox a tiny
+library <code>mylib</code>. This library is very simple but exercises enough parts of
+RLBox to be interesting: calling functions, copying strings into the sandbox,
+registering and handling callbacks from the library. In this example we're
+going to use the <em>noop</em> sandbox. In a later chapter we'll extend this example
+to use the Wasm sandbox.</p>
+<blockquote>
+<p><strong>Note:</strong> We are actively working on a cleaner and easier to use API and will
+update this example once that API is ready. If you are curious what this API
+looks like, take a look at the <a href="https://searchfox.org/mozilla-central/rev/73a6abf1aaedbf7613fa90a7f459a8c0dfe5f0ce/gfx/ots/RLBoxWOFF2Host.cpp#142">WOFF2 sandbox in
+Firefox</a>.</p>
+</blockquote>
+<h3 id="the-library"><a class="header" href="#the-library">The library</a></h3>
+<p>The library four functions declared in <a href="./noop-hello-example/mylib.h">mylib.h</a>:</p>
+<pre><code class="language-c">#pragma once
+
+#ifdef __cplusplus
+extern &quot;C&quot; {
+#endif
+    void hello();
+    unsigned add(unsigned, unsigned);
+    void echo(const char* str);
+    void call_cb(void (*cb) (const char* str));
+#ifdef __cplusplus
+}
+#endif
+</code></pre>
+<p>And implemented in <a href="./noop-hello-example/mylib.c">mylib.c</a>:</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &quot;mylib.h&quot;
+
+void hello() {
+  printf(&quot;Hello from mylib\n&quot;);
+}
+
+unsigned add(unsigned a, unsigned b) {
+  return a + b;
+}
+
+void echo(const char* str) {
+  printf(&quot;echo: %s\n&quot;, str);
+}
+
+void call_cb(void (*cb) (const char* str)) {
+  cb(&quot;hi again!&quot;);
+}
+</code></pre>
+<h3 id="boilerplate"><a class="header" href="#boilerplate">Boilerplate</a></h3>
+<p>To get started, in our main application (<a href="./noop-hello-example/main.cpp">main.cpp</a>)
+let's first import the RLBox library and implement some necessary boilerplate:</p>
+<pre><code class="language-cpp">// We're going to use RLBox in a single-threaded environment.
+#define RLBOX_SINGLE_THREADED_INVOCATIONS
+// All calls into the sandbox are resolved statically.
+#define RLBOX_USE_STATIC_CALLS() rlbox_noop_sandbox_lookup_symbol
+
+#include &lt;stdio.h&gt;
+#include &lt;cassert&gt;
+#include &lt;rlbox/rlbox.hpp&gt;
+#include &lt;rlbox/rlbox_noop_sandbox.hpp&gt;
+
+#include &quot;mylib.h&quot;
+
+using namespace std;
+using namespace rlbox;
+
+// Define base type for mylib using the noop sandbox
+RLBOX_DEFINE_BASE_TYPES_FOR(mylib, noop);
+
+// Declare callback function we're going to call from sandboxed code.
+void hello_cb(rlbox_sandbox_mylib&amp; _, tainted_mylib&lt;const char*&gt; str);
+
+int main(int argc, char const *argv[]) {
+  // ... will fill in shortly ...
+  // destroy sandbox
+  sandbox.destroy_sandbox();
+
+  return 0;
+}
+</code></pre>
+<p>Why the boilerplate? RLBox has support for different kinds of sandboxing
+back-ends. In practice we start with the <em>noop</em> sandbox, which is not a real
+sandbox, to get our types right and only at the end change from <code>noop</code> to a
+real sandbox like Wasm. This, alas, means the RLBox types are
+typically generic in the sandbox type (e.g., <code>rlbox::tainted&lt;T, sandbox_type&gt;</code>); macros like <code>RLBOX_DEFINE_BASE_TYPES_FOR</code> define simpler types
+for us (e.g., we can use <code>tainted_mylib&lt;T&gt;</code>). In this simple example we only
+use the noop sandbox; we walk through how you modify this code to use Wasm <a href="chapters/sandbox/wasm.html">in
+this chaper</a>.</p>
+<h3 id="creating-sandboxes-and-calling-sandboxed-functions"><a class="header" href="#creating-sandboxes-and-calling-sandboxed-functions">Creating sandboxes and calling sandboxed functions</a></h3>
+<p>Now that the boilerplate is out of the way, let's now create a new sandbox and
+call the <code>hello</code> function:</p>
+<pre><code class="language-cpp">  // Declare and create a new sandbox
+  rlbox_sandbox_mylib sandbox;
+  sandbox.create_sandbox();
+
+  // Call the library hello function:
+  sandbox.invoke_sandbox_function(hello);
+</code></pre>
+<p>We do not call <code>hello()</code> directly. Instead, we use the
+<code>invoke_sandbox_function()</code> method. Once we turn on sandboxing, i.e., switch
+from the noop sandbox to Wasm, we won't be able to call the function directly
+either (e.g., because Wasm's
+<a href="https://en.wikipedia.org/wiki/Application_binary_interface">ABI</a> might be
+different from the app).</p>
+<h3 id="calling-sandboxed-functions-and-verifying-their-return-value"><a class="header" href="#calling-sandboxed-functions-and-verifying-their-return-value">Calling sandboxed functions and verifying their return value</a></h3>
+<p>Let's now the <code>add</code> function:</p>
+<pre><code class="language-cpp">  // call the add function and check the result:
+  auto val = sandbox.invoke_sandbox_function(add, 3, 4);
+  printf(&quot;Adding... 3+4 = %d\n&quot;, val);
+
+  auto ok = sandbox.invoke_sandbox_function(add, 3, 4)
+                   .copy_and_verify([](unsigned ret){
+    printf(&quot;Adding... 3+4 = %d\n&quot;, ret);
+    return ret == 7;
+  });
+  printf(&quot;OK? = %d\n&quot;, ok);
+</code></pre>
+<p>This call is a bit more interesting. First, we call <code>add</code> with arguments. Since
+these arguments are primitive types RLBox doesn't impose any restrictions.
+Second, RLBox ensures that the <code>unsigned</code> return value that <code>add</code> returns is
+<em>tainted</em> and thus cannot be used without verification. For example,
+Here, we call the
+<code>copy_and_verify()</code> method which copies the value into application memory and
+runs our verifier function:</p>
+<pre><code class="language-cpp">[](unsigned ret){
+      printf(&quot;Adding... 3+4 = %d\n&quot;, ret);
+      return ret == 7;
+}
+</code></pre>
+<p>This function (lambda) simply prints the tainted value and returns <code>true</code> if it
+is <code>7</code>. A compromised library could return any value and if we use this value
+to, say, index an array this could potentially introduce an out-of-bounds
+memory access.</p>
+<h3 id="calling-functions-with-tainted-strings"><a class="header" href="#calling-functions-with-tainted-strings">Calling functions with (tainted) strings</a></h3>
+<p>Let's now call the <code>echo</code> function which takes a slightly more interesting
+argument: a string. Here, we can't simply pass a string literal as an argument:
+the sandbox cannot access application memory where this would be allocated.
+Instead, we must allocate a buffer in sandbox memory and copy the string we
+want to pass to <code>echo</code> into this region:</p>
+<pre><code class="language-cpp">  // Call the library echo function
+  const char* helloStr = &quot;hi hi!&quot;;
+  size_t helloSize = strlen(helloStr) + 1;
+  tainted_mylib&lt;char*&gt; taintedStr = sandbox.malloc_in_sandbox&lt;char&gt;(helloSize);
+  strncpy(taintedStr
+            .unverified_safe_pointer_because(helloSize, &quot;writing to region&quot;)
+         , helloStr, helloSize);
+</code></pre>
+<p>Here <code>taintedStr</code> is a tainted string: it lives in the sandbox memory and could
+be written to by the (compromised) library code concurrently. In general, it's
+unsafe for us to use tainted data without verification since it could be
+attacker controlled. In this particular case, though, we just want to copy data
+(<code>helloStr</code> specifically) to <code>taintedStr</code>. We do this by using the
+<code>unverified_safe_pointer_because</code> to essentially cast <code>taintedStr</code> to a <code>char*</code>
+the without any verification. This is safe because we are just copying
+<code>helloStr</code> to sandbox memory: at worst, the sandboxed library can overwrite the
+memory region pointed to by <code>taintedStr</code> and crash when it tries to print
+it.<sup class="footnote-reference"><a href="#note-1">1</a></sup></p>
+<blockquote>
+<p><strong>Note:</strong> Internally, <code>unverified_safe_pointer_because</code> is not actual just a
+cast. It also ensures (1) that the the pointer is within the sandbox and that
+(2) accessing <code>helloSize</code> bytes off the pointer would stay within the sandbox
+boundary.</p>
+</blockquote>
+<p>It's worth mentionig that the string <code>&quot;writing to region&quot;</code> does not have any
+special meaning in the code. Rather the RLBox API asks you to provide a
+free-form string that acts as documentation. Essentially you are providing a
+string that says <em>it is safe to remove the tainting from this type because...</em>
+. Such documentation may be useful to other developers who read your code. In
+the above example, a write to the sandbox region cannot cause a memory safety
+error in the application so it's safe to remove the taint.</p>
+<p>Now, we can just call the function and free the allocated string:</p>
+<pre><code class="language-cpp">  sandbox.invoke_sandbox_function(echo, taintedStr);
+  sandbox.free_in_sandbox(taintedStr);
+</code></pre>
+<h3 id="registering-and-handling-callbacks"><a class="header" href="#registering-and-handling-callbacks">Registering and handling callbacks</a></h3>
+<p>Finally, let's call the <code>call_cb</code> function. To do this, let's first define a
+callback for the function to call. We declared our callback in the boilerplate, but never defined the function. So let's do that at the end of the file:</p>
+<pre><code class="language-cpp">void hello_cb(rlbox_sandbox_mylib&amp; _, tainted_mylib&lt;const char*&gt; str) {
+  auto checked_string =
+    str.copy_and_verify_string([](unique_ptr&lt;char[]&gt; val) {
+        assert(val != nullptr &amp;&amp; strlen(val.get()) &lt; 1024);
+        return move(val);
+    });
+  printf(&quot;hello_cb: %s\n&quot;, checked_string.get());
+}
+</code></pre>
+<p>This callback is called with a tainted string. To actually use the tainted
+string we need to verify it. To do this, we use the string verification function
+<a href="chapters/api/tainted.html"><code>copy_and_verify_string()</code></a> with a simple verifier:</p>
+<pre><code class="language-cpp">    str.copy_and_verify_string([](unique_ptr&lt;char[]&gt; val) {
+        assert(val != nullptr &amp;&amp; strlen(val.get()) &lt; 1024);
+        return move(val);
+    });
+</code></pre>
+<p>This verifier moves the string is not null and if it's length is less than 1KB.
+In the callback we simply print this string.</p>
+<p>Let's now continue back in <code>main</code>. To <code>call_cb</code> with the callback with first
+need o register the callback -- otherwise RLBox will disallow the
+library-application call -- and pass the callback to the <code>call_cb</code> function:</p>
+<pre><code class="language-cpp">  // register callback and call it
+  auto cb = sandbox.register_callback(hello_cb);
+  sandbox.invoke_sandbox_function(call_cb, cb);
+</code></pre>
+<h3 id="build-and-run"><a class="header" href="#build-and-run">Build and run</a></h3>
+<p>If you haven't installed RLBox, see the <a href="chapters/install.html">Install</a> chapter. </p>
+<p>Clone this books' repository:</p>
+<pre><code class="language-bash">git clone git@github.com:PLSysSec/rlbox-book.git
+cd rlbox-book/src/chapters/examples/noop-hello-example
+</code></pre>
+<p>Build:</p>
+<pre><code class="language-bash">cmake -S . -B ./build -DCMAKE_BUILD_TYPE=Release
+cmake --build ./build --config Release --parallel
+</code></pre>
+<p>Run:</p>
+<pre><code class="language-bash:">$ ./build/main
+Hello from mylib
+Adding... 3+4 = 7
+Adding... 3+4 = 7
+OK? = 1
+echo: hi hi!
+hello_cb: hi again!
+</code></pre>
+<div class="footnote-definition" id="note-1"><sup class="footnote-definition-label">1</sup>
+<p>For single threaded applications the attacker can't overwrite the pointer because we're not calling into the sandbox before calling `strncpy.</p>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../chapters/install.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../chapters/appendix.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../chapters/install.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../chapters/appendix.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

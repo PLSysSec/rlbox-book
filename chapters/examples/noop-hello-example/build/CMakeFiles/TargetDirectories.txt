@@ -1,0 +1,4 @@
+/home/d/hack/rlbox-book/src/chapters/examples/noop-hello-example/build/CMakeFiles/lib.dir
+/home/d/hack/rlbox-book/src/chapters/examples/noop-hello-example/build/CMakeFiles/main.dir
+/home/d/hack/rlbox-book/src/chapters/examples/noop-hello-example/build/CMakeFiles/edit_cache.dir
+/home/d/hack/rlbox-book/src/chapters/examples/noop-hello-example/build/CMakeFiles/rebuild_cache.dir
