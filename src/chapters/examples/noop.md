@@ -167,7 +167,7 @@ library-application call -- and pass the callback to the `call_cb` function:
 
 ### Build and run
 
-If you haven't installed RLBox, see the [Install](chapters/install.md) chapter. 
+If you haven't installed RLBox, see the [Install](../install.md) chapter. 
 
 Clone this books' repository:
 
