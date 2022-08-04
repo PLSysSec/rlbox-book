@@ -1,11 +1,11 @@
 # Build and install RLBox
 
-First you should clone the repo:
+First you should clone the RLBox repo:
 
 ```bash
 git clone git@github.com:PLSysSec/rlbox.git
 ```
-And enter the rlbox directory.
+And enter the root directory.
 
 ```bash
 cd rlbox
