@@ -5,6 +5,11 @@ First you should clone the repo:
 ```bash
 git clone git@github.com:PLSysSec/rlbox.git
 ```
+And enter the rlbox directory.
+
+```bash
+cd rlbox
+```
 
 Then, setup a build folder using cmake:
 
