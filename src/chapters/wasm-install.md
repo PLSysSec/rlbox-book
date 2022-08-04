@@ -1,15 +1,18 @@
 # Building and Installing our Wasm sandboxing toolchain
 
-To start, you will need to download and install the appropriate wasi-sdk for your platform.
+Clone the repo containing the portion of the rlbox toolkit that supports wasm
+sandboxing.
 
-This can be found at:
+```bash
+git clone https://github.com/PLSysSec/rlbox_wasm2c_sandbox
+```
 
-`https://github.com/WebAssembly/wasi-sdk/releases`
-
-For example, on linux, this is simply:
-
-
-
-
+`cd` into the repo, and build the tools. This will also download the wasi-sdk, the
+wasm2c compiler, and rlbox.
 
 
+```bash
+cd rlbox_wasm2c_sandbox
+cmake -S . -B ./build
+cmake --build ./build --target all
+```
