@@ -1,6 +1,6 @@
 # Build and install RLBox
 
-First you should clone the RLBox repo:
+First clone the RLBox repo:
 
 ```bash
 git clone git@github.com:PLSysSec/rlbox.git
@@ -17,7 +17,7 @@ Then, setup a build folder using cmake:
 cmake -S . -B ./build -DCMAKE_BUILD_TYPE=Release
 ```
 
-Third, build:
+Next, build:
 
 ```bash
 cmake --build ./build --config Release --parallel
