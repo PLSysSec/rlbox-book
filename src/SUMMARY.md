@@ -3,7 +3,7 @@
 - [Overview](./overview.md)
 - [Tutorial]()
   - [Building and install RLBox](./chapters/rlbox-install.md)
-  - [Sandboxing a simple library with the passthrough (`noop`) backend](./chapters/examples/noop.md)
+  - [Retrofitting sandboxing with the passthrough (`noop`) backend](./chapters/examples/noop.md)
   - [Building and installing Wasm tools](./chapters/wasm-install.md)
   - [Enforcing isolation with the Wasm backend](./chapters/wasm-sandbox.md)
 - [Core RLBox API]() <!-- ./chapters/api.md -->
