@@ -1,5 +1,8 @@
 .PHONY: serve deploy
 
+book:
+	mdbook build
+
 serve: book
 	mdbook serve
 
