@@ -1,5 +1,6 @@
-#Our sandbox tools repo artifacts
+#ANCHOR root
 RLBOX_ROOT=../rlbox_wasm2c_sandbox
+#ANCHOR_END root
 
 #RLBOX headers
 RLBOX_INCLUDE=$(RLBOX_ROOT)/build/_deps/rlbox-src/code/include

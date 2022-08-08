@@ -15,11 +15,40 @@ isolation. To finish sandboxing your library, you will need to.
 We will look at each these steps next.
 
 
-##Our example Makefile
+## Our example Makefile
 
 Doing all of these steps a command at a time would be terribly tedious. Instead,
-we automate all these steps with a simple make file. Here we will walk through
-the make file to explain each step.
+we automate all these steps with a simple make file. Lets take a look at
+our full make file, then walk through each part.
+
+```c
+{{#include examples/wasm-hello-example/Makefile}}
+```
+
+## definitions
+
+To start we can see our Makefile begins with RLBOX_ROOT, which just specificies
+where our `rlbox_wasm2c_sandbox` repo's root directory lives. 
+
+This repo contains
+our modified version of wasm2c, a wasm runtime (and very limited wasi runtime),
+and pulls down a copy of the wasi-sdk and the rlbox framework as part of its
+build process, providing a single location for all our tools, which is handy
+for example purposes and some developers.
+
+Many users folks perfer to do a system wide or per-user install of the wasi-sdk
+and RLBox. 
+
+
+
+
+
+
+
+
+
+
+
 
 
 

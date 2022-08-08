@@ -14,27 +14,27 @@ to use the Wasm sandbox.
 
 ### The library
 
-The library four functions declared in [mylib.h](./noop-hello-example/mylib.h):
+The library four functions declared in [mylib.h](examples/noop-hello-example/mylib.h):
 
 ```c
-{{#include noop-hello-example/mylib.h}}
+{{#include examples/noop-hello-example/mylib.h}}
 ```
 
-And implemented in [mylib.c](./noop-hello-example/mylib.c):
+And implemented in [mylib.c](./examples/noop-hello-example/mylib.c):
 
 ```c
-{{#include noop-hello-example/mylib.c}}
+{{#include examples/noop-hello-example/mylib.c}}
 ```
 
 ### Boilerplate
 
-To get started, in our main application ([main.cpp](./noop-hello-example/main.cpp))
+To get started, in our main application ([main.cpp](examples/noop-hello-example/main.cpp))
 let's first import the RLBox library and implement some necessary boilerplate:
 
 ```cpp
-{{#include noop-hello-example/main.cpp:imports}}
+{{#include examples/noop-hello-example/main.cpp:imports}}
   // ... will fill in shortly ...
-{{#include noop-hello-example/main.cpp:main-end}}
+{{#include examples/noop-hello-example/main.cpp:main-end}}
 ```
 
 Why the boilerplate? RLBox has support for different kinds of sandboxing
