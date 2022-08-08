@@ -1,0 +1,20 @@
+$diff ../noop-hello-example/main.cpp main.cpp
+3a4
+>
+5c6
+< #define RLBOX_USE_STATIC_CALLS() rlbox_noop_sandbox_lookup_symbol
+---
+> #define RLBOX_USE_STATIC_CALLS() rlbox_wasm2c_sandbox_lookup_symbol
+9,11d9
+< #include <rlbox/rlbox.hpp>
+< #include <rlbox/rlbox_noop_sandbox.hpp>
+<
+12a11,14
+> #include "mylib.wasm.h"
+> #include "rlbox.hpp"
+> #include "rlbox_wasm2c_sandbox.hpp"
+>
+18c20
+< RLBOX_DEFINE_BASE_TYPES_FOR(mylib, noop);
+---
+> RLBOX_DEFINE_BASE_TYPES_FOR(mylib, wasm2c);

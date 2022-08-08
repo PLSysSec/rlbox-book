@@ -1,9 +1,13 @@
 # Retrofitting isolation in a simple application
 
-For our tutorial, we're going to sandbox a tiny library ``mylib``. While this
-library is very simple, it exercises a variety of features we will need to
-secure when sandboxing a library including: calling functions, copying strings
-into the sandbox, registering and handling callbacks from the library.
+For our tutorial, we're going to be sandboxing a tiny library ``mylib``. While
+this library is very simple, it exercises key features of RLBox including:
+calling functions, copying strings into the sandbox, registering and handling
+callbacks from the library.
+
+This first part of the tutorial is going to focus on modify our application to
+add sandboxing, the [next part](./wasm-sandbox.md) will focus on recompiling our library with wasm to
+enforce isolation.
 
 In this example, we're going to use the _noop_ sandbox backend. The _noop_
 sandbox does not actually enforce isolation, it is simply a tool that makes it
@@ -12,25 +16,27 @@ turn our calls into the RLBox sandbox into normal function calls to the library
 we already have linked in our application.
 
 The reason for this `noop` backend is that it supports incrementally porting our
-application. Instead of having to worry about the 
+application. Instead of having to worry about trying to change all our library
+interfaces at once (to account for ABI differences between a sandbox and our
+normal library), and deal with the resulting head-aches. We can change gradually
+change our function calls from normal library calls, to sandbox calls, and at
+each step test that our application continues to work as expected.
 
 
+### Our example library
 
-
-
-### The library
-
-The library four functions declared in [mylib.h](examples/noop-hello-example/mylib.h):
+``mylib`` declares four functions in [mylib.h](examples/noop-hello-example/mylib.h):
 
 ```c
 {{#include examples/noop-hello-example/mylib.h}}
 ```
 
-And implemented in [mylib.c](./examples/noop-hello-example/mylib.c):
+And implements those function in [mylib.c](./examples/noop-hello-example/mylib.c):
 
 ```c
 {{#include examples/noop-hello-example/mylib.c}}
 ```
+
 
 ### Boilerplate
 
@@ -59,7 +65,7 @@ Now that the boilerplate is out of the way, let's now create a new sandbox and
 call the `hello` function:
 
 ```cpp
-{{#include noop-hello-example/main.cpp:hello}}
+{{#include examples/noop-hello-example/main.cpp:hello}}
 ```
 
 We do not call `hello()` directly. Instead, we use the
@@ -74,7 +80,7 @@ different from the app).
 Let's now the `add` function:
 
 ```cpp
-{{#include noop-hello-example/main.cpp:add}}
+{{#include examples/noop-hello-example/main.cpp:add}}
 ```
 
 This call is a bit more interesting. First, we call `add` with arguments. Since
@@ -106,7 +112,7 @@ Instead, we must allocate a buffer in sandbox memory and copy the string we
 want to pass to `echo` into this region:
 
 ```cpp
-{{#include noop-hello-example/main.cpp:echo-pre}}
+{{#include examples/noop-hello-example/main.cpp:echo-pre}}
 ```
 
 Here `taintedStr` is a tainted string: it lives in the sandbox memory and could
@@ -137,7 +143,7 @@ error in the application so it's safe to remove the taint.
 Now, we can just call the function and free the allocated string:
 
 ```cpp
-{{#include noop-hello-example/main.cpp:echo}}
+{{#include examples/noop-hello-example/main.cpp:echo}}
 ```
 
 ### Registering and handling callbacks
@@ -146,7 +152,7 @@ Finally, let's call the `call_cb` function. To do this, let's first define a
 callback for the function to call. We declared our callback in the boilerplate, but never defined the function. So let's do that at the end of the file:
 
 ```cpp
-{{#include noop-hello-example/main.cpp:callback}}
+{{#include examples/noop-hello-example/main.cpp:callback}}
 ```
 
 This callback is called with a tainted string. To actually use the tainted
@@ -168,7 +174,7 @@ need o register the callback -- otherwise RLBox will disallow the
 library-application call -- and pass the callback to the `call_cb` function:
 
 ```cpp
-{{#include noop-hello-example/main.cpp:call_cb}}
+{{#include examples/noop-hello-example/main.cpp:call_cb}}
 ```
 
 ### Build and run

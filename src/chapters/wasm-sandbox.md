@@ -7,9 +7,6 @@
 {{#include examples/wasm-hello-example/main-diff.txt}}
 ```
 
-
-
-
 # Adding isolation with the Wasm sandbox backend
 
 The `noop` backend makes it easy to add security checks. However, it does not enforce
