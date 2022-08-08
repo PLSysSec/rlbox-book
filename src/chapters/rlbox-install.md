@@ -21,18 +21,9 @@ framework as part of its build process, providing a single location for all our
 tools, which is handy for example purposes and getting started.
 
 Many folks perfer to do a system wide or per-user install of the wasi-sdk and
-RLBox. The latest releases of the wasi-sdk (which will given you everything
-you need to compile your library from C to wasm) be found here.
-
-
-
-
-
-
-
-
-
-
+RLBox. The latest releases of the wasi-sdk (which will given you everything you
+need to compile your library from C to wasm) be found
+[here](https://github.com/WebAssembly/wasi-sdk/releases).
 
 
 
