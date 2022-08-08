@@ -1,16 +1,22 @@
-# Sandboxing a simple library
+# Retrofitting isolation in a simple application
 
-To get a feel for what it's like to use RLBox, we're going to sandbox a tiny
-library ``mylib``. This library is very simple but exercises enough parts of
-RLBox to be interesting: calling functions, copying strings into the sandbox,
-registering and handling callbacks from the library. In this example we're
-going to use the _noop_ sandbox. In a later chapter we'll extend this example
-to use the Wasm sandbox.
+For our tutorial, we're going to sandbox a tiny library ``mylib``. While this
+library is very simple, it exercises a variety of features we will need to
+secure when sandboxing a library including: calling functions, copying strings
+into the sandbox, registering and handling callbacks from the library.
 
-> **Note:** We are actively working on a cleaner and easier to use API and will
-> update this example once that API is ready. If you are curious what this API
-> looks like, take a look at the [WOFF2 sandbox in
-> Firefox](https://searchfox.org/mozilla-central/rev/73a6abf1aaedbf7613fa90a7f459a8c0dfe5f0ce/gfx/ots/RLBoxWOFF2Host.cpp#142).
+In this example, we're going to use the _noop_ sandbox backend. The _noop_
+sandbox does not actually enforce isolation, it is simply a tool that makes it
+easier to port new libraries to RLBox. The _noop_ sandbox does nothing more than
+turn our calls into the RLBox sandbox into normal function calls to the library
+we already have linked in our application.
+
+The reason for this `noop` backend is that it supports incrementally porting our
+application. Instead of having to worry about the 
+
+
+
+
 
 ### The library
 

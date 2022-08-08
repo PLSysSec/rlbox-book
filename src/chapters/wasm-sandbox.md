@@ -1,3 +1,15 @@
+## Switching to the wasm2c backend
+
+ Update the application `main.hpp` to use the `wasm2c` sandbox backend instead
+   of `noop`.
+
+```
+{{#include examples/wasm-hello-example/main-diff.txt}}
+```
+
+
+
+
 # Adding isolation with the Wasm sandbox backend
 
 The `noop` backend makes it easy to add security checks. However, it does not enforce
@@ -8,8 +20,7 @@ isolation. To finish sandboxing your library, you will need to.
 2. Compile that resulting `mylib.wasm` file to C (`mylib.wasm.c` and `mylib.wasm.h`)
    with the `wasm2c` compiler -- converting it to a form that can be compiled and
    linked with your application.
-3. Update the application `main.hpp` to use the `wasm2c` sandbox backend instead
-   of `noop`.
+
 4. Compile and link your application `main.cpp`, with the now sandboxed library.
 
 We will look at each these steps next.
@@ -25,19 +36,12 @@ our full make file, then walk through each part.
 {{#include examples/wasm-hello-example/Makefile}}
 ```
 
-## definitions
+## Definitions
 
 To start we can see our Makefile begins with RLBOX_ROOT, which just specificies
-where our `rlbox_wasm2c_sandbox` repo's root directory lives. 
-
-This repo contains
-our modified version of wasm2c, a wasm runtime (and very limited wasi runtime),
-and pulls down a copy of the wasi-sdk and the rlbox framework as part of its
-build process, providing a single location for all our tools, which is handy
-for example purposes and some developers.
-
-Many users folks perfer to do a system wide or per-user install of the wasi-sdk
-and RLBox. 
+where our `rlbox_wasm2c_sandbox` repo's root directory lives. This repo contains
+all the tools we will need to compile our C library to a Wasm sandboxed library
+that we can compile and link with our application.
 
 
 

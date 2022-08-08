@@ -3,42 +3,50 @@
 # Overview
 
 RLBox is a toolkit for sandboxing third party C libraries, that are being used
-by C++ code (other languages are in the works). It was originally developed for
-use in Firefox, but is now being used in a variety of different client and
-server applications.
+by C++ code (support for other languages is in the works). RLBox was originally
+developed for Firefox[^RLBoxPaper], which has been shipping with it since 2020.
 
-The toolkit consits of:
+The RLBox toolkit consists of:
 
 1. A C++ framework (RLBox) that makes it easy to retrofit existing application
    code to safely interface with sandboxed libraries.
 
 2. A Wasm backend (based on wasm2c) for isolating (sandboxing) C libraries.
 
-RLbox generally assumes you will be building your library-to-be-sandbox with
-the wasi-sdk (which provides a compiler, linker, etc. based on Clang/LLVM) to
-compile your C library to Wasm.
+In this section, we provide an overview of the RLbox framework, its reason for
+being, and a high level sketch of how it works.  In the [next
+section](./tutorial.md), we will provide a tutorial that provides an end-to-end
+example of applying RLbox to a simple application.
 
+### Why RLBox
 
-In this overview section, we on framework, which abstracts the underlying
-sandboxing mechanism.  This lets you port your application without worrying
-about the Wasm sandboxing details.
+Work on RLbox began several years ago while attempting to add fine grain
+isolation third party libraries in the Firefox renderer. Initially we attempted
+this process without any support from a framwork like RLBox, instead attempting
+to manually deal with all the details sandboxing such as sanitizing untrusted
+inputs, and reconciling ABI differences between the sandbox and host
+application.
 
-In the next section, we will provide a tutorial that provides an end-to-end
-example of applying
+This went poorly, it was tedious, error prone, and did nothing to abstract the
+details of the underlying sandbox from the developer. We had basically no hope
+that this would result in code that was maintainable, or that normal Mozilla
+developers who were unfamiliar with the gory details of our system would be able
+to sandbox new library, let alone maintain existing ones.
 
-### Why do we need a sandboxing API?
+So we scrapped this manual approach and build RLBox[^RLBoxPaper].
 
-Sandboxing libraries without the RLBox API is tedious and error-prone.
-This is especially the case when retrofitting an existing codebase like Firefox
-where libraries are trusted and thus the application-library boundary is
-blurry.  To sandbox a library — and thus to move to a world where the library
-is no longer trusted — we need to modify this application-library boundary. 
-For example, we need to add security checks in Firefox to ensure that any value
-from the sandboxed library is properly validated before it is used.  Otherwise,
-the library (when compromised) may be able to abuse Firefox code to hijack its
-control flow [^RLBoxPaper]. The RLBox API
-is explicitly designed to make retrofitting of existing application code
-simpler and less error-prone.[^RLBoxLogin]
+RLbox automates many of the low level details of sandboxing and allows you, as a
+security engineer or application developer, to instead focus just on what you
+need to do to sandbox your particular application.
+
+To sandbox a library — and thus to move to a world where the library is
+no longer trusted — we need to modify this application-library boundary.  For
+example, we need to add security checks in Firefox to ensure that any value from
+the sandboxed library is properly validated before it is used.  Otherwise, the
+library (when compromised) may be able to abuse Firefox code to hijack its
+control flow [^RLBoxPaper]. The RLBox API is explicitly designed to make
+retrofitting of existing application code simpler and less
+error-prone.[^RLBoxLogin]
 
 
 ### What does RLBox provide?
