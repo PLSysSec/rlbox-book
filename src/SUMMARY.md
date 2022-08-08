@@ -1,15 +1,8 @@
 # Summary
 
 - [Overview](./overview.md)
+- [Installing RLBox](./chapters/rlbox-install.md)
 - [Tutorial]()
-  - [Building and install RLBox](./chapters/rlbox-install.md)
   - [Retrofitting sandboxing with the passthrough (`noop`) backend](./chapters/examples/noop.md)
   - [Switching to the Wasm backend to enforce Isolation](./chapters/wasm-sandbox.md)
-- [Core RLBox API]() <!-- ./chapters/api.md -->
-  - [Creating, managing, and destroying sandboxe]() <!-- chapters/api/sandbox.md) -->
-  - [Calling sandboxed functions]() <!-- chapters/api/function.md -->
-  - [Creating, manipulating, and verifying tainted values]() <!-- chapters/api/tainted.md -->
-  - [Allocating and managing sandbox memory]() <!-- chapters/api/memory.md -->
-  - [Exposing callbacks to sandboxed code]() <!-- chapters/api/callbacks.md -->
-  - [Standard Library]() <!-- chapters/api/stdlib.md -->
 - [Additional material](chapters/appendix.md)

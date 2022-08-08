@@ -2,12 +2,29 @@
 
 # Overview
 
-RLBox is a toolkit for sandboxing third-party libraries. The toolkit consists
-of (1) a Wasm-based sandbox and (2) an API for retrofitting existing
-application code to interface with a sandboxed library. In this overview, we
-focus on the API, which abstracts over the underlying sandboxing mechanism.
-This lets you port your application without worrying about the Wasm sandboxing
-details. The Wasm-based sandbox is documented in a [separate chaper](chapters/sandbox/wasm.md).
+RLBox is a toolkit for sandboxing third party C libraries, that are being used
+by C++ code (other languages are in the works). It was originally developed for
+use in Firefox, but is now being used in a variety of different client and
+server applications.
+
+The toolkit consits of:
+
+1. A C++ framework (RLBox) that makes it easy to retrofit existing application
+   code to safely interface with sandboxed libraries.
+
+2. A Wasm backend (based on wasm2c) for isolating (sandboxing) C libraries.
+
+RLbox generally assumes you will be building your library-to-be-sandbox with
+the wasi-sdk (which provides a compiler, linker, etc. based on Clang/LLVM) to
+compile your C library to Wasm.
+
+
+In this overview section, we on framework, which abstracts the underlying
+sandboxing mechanism.  This lets you port your application without worrying
+about the Wasm sandboxing details.
+
+In the next section, we will provide a tutorial that provides an end-to-end
+example of applying
 
 ### Why do we need a sandboxing API?
 
