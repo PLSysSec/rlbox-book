@@ -1,5 +1,8 @@
 ## Setting up our tutorial environment
 
+XXX update to support both examples
+XXX add mention to tutorial intro
+
 To start, create an `example` directory where our example app and tools will
 live, and enter that directory.
 
