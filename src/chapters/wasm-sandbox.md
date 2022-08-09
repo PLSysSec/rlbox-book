@@ -67,7 +67,24 @@ e.g. `wasm2c`, our wasi-sdk (with CMake downloads), etc.
 {{#include examples/wasm-hello-example/Makefile:27:28}}
 ```
 
+Here we are building our library to wasm. Typically you will just want to update
+your build system to use the wasi-sdk `clang` as your compiler. This will also
+use wasi-libc instead of your normal `libc` (library and headers live in
+`$WASI_SYSROOT`
 
+Also note worthy are the `$(WASM_CFLAGS)` which are important to ensure that
+our output plays nicely with the rest of the toolchain.
+
+XXX explain flags
+
+
+Notice the `dummy_main.c` file to keep wasi-clang happy, you can find a copy
+`rlbox_wasm2c_sandbox/_src/wasm2c_sandbox_wrapper.c`
+
+wasi-libc at the moment has a variety of limitations such as lack of pthread
+support (though this should be fixed soon!). Anything platform specific such as
+OS specific system calls (or just system calls that Wasi doesn't support), or
+platform specific code e.g. inline assembly will also fail at this stage.
 
 
 ### Step 2: Using `wasm2c` to generate our sandboxed library
@@ -77,13 +94,25 @@ e.g. `wasm2c`, our wasi-sdk (with CMake downloads), etc.
 ```
 
 
+Here we use our fork of `wasm2` to generates a `mylib.wasm.c` C file which
+implements and can be linked with an application. 
+
+
+***Note***: While RLBox currently only works with our fork of `wasm2c` we hope
+to upstream our changes to `wasm2c` in the near future.
+
+
+
 ### Step 3: Compiling and linking our application with our library
 
 ```Makefile
 {{#include examples/wasm-hello-example/Makefile:35:37}}
 ```
 
-
+XXX not our .c and .h files
+XXX explain seperate library compile and link step
+XXX explain wasi and wasm runtime
+XXX files and headers
 
 
 
