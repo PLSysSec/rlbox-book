@@ -5,7 +5,7 @@ very simple application and library. However, all the basic step generalize
 to more complex examples.
 
 We have broken the tutorial into two parts, in the [first
-part](./chapters/noop-sandox.md), we will look at how to use RLBox to retrofit
+part](./chapters/noop-sandbox.md), we will look at how to use RLBox to retrofit
 sandboxing in an existing application, taking all the steps to that control flow
 and data flow across the application library boundary are secure.
 
@@ -16,7 +16,7 @@ library is isolated.
 Once we complete these two steps, our library is now securely isolated
 from our application
 
-If you would like to download and run the examples yourself:
+If you would like to download and run the examples yourself, you
+can follow [these instructions](./chapters/tutorial-install.md).
 
-XXX add link to tutorial install instructions and add support for second example
 

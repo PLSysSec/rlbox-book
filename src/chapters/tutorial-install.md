@@ -1,7 +1,7 @@
 ## Setting up our tutorial environment
 
-XXX update to support both examples
-XXX add mention to tutorial intro
+<!-- XXX update to support both examples -->
+<!-- XXX add mention to tutorial intro -->
 
 To start, create an `example` directory where our example app and tools will
 live, and enter that directory.
@@ -9,6 +9,8 @@ live, and enter that directory.
 ```bash
 mkdir example ; cd example
 ```
+
+Then follow the instruction for [setting up the RLBox environment](./rlbox-install.md).
 
 Next, clone the repo for this book, which contains our example code, and copy it
 to its own directory, and build the example code.
