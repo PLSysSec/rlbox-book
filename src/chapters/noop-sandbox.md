@@ -57,11 +57,11 @@ typically generic in the sandbox type (e.g., `rlbox::tainted<T,
 sandbox_type>`); macros like `RLBOX_DEFINE_BASE_TYPES_FOR` define simpler types
 for us (e.g., we can use `tainted_mylib<T>`). In this simple example we only
 use the noop sandbox; we walk through how you modify this code to use Wasm [in
-this chaper](chapters/sandbox/wasm.md).
+the next chaper](/chapters/wasm-sandbox.md).
 
 ### Creating sandboxes and calling sandboxed functions
 
-Now that the boilerplate is out of the way, let's now create a new sandbox and
+Now that the boilerplate is out of the way, let's create a new sandbox and
 call the `hello` function:
 
 ```cpp
@@ -77,7 +77,7 @@ different from the app).
 
 ### Calling sandboxed functions and verifying their return value
 
-Let's now the `add` function:
+Let's now call the `add` function:
 
 ```cpp
 {{#include examples/noop-hello-example/main.cpp:add}}
@@ -146,6 +146,12 @@ Now, we can just call the function and free the allocated string:
 {{#include examples/noop-hello-example/main.cpp:echo}}
 ```
 
+> **Sneak peak of upcoming feature:** In an upcoming version of RLBox
+> transferring a buffer into the sandbox will much simpler with a new
+> [TransferBuffer](https://searchfox.org/mozilla-central/source/xpcom/base/RLBoxUtils.h)
+> abstraction. To get a sneak preview of this, take a look at the usage in
+> [Firefox](https://searchfox.org/mozilla-central/source/gfx/ots/RLBoxWOFF2Host.cpp#175).
+
 ### Registering and handling callbacks
 
 Finally, let's call the `call_cb` function. To do this, let's first define a
@@ -179,7 +185,8 @@ library-application call -- and pass the callback to the `call_cb` function:
 
 ### Build and run
 
-If you haven't installed RLBox, see the [Install](../rlbox-install.md) chapter.
+If you haven't installed RLBox, see the [Install](/chapters/rlbox-install.md)
+chapter.
 
 Clone this books' repository:
 
