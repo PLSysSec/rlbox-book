@@ -3,11 +3,13 @@
 <!-- XXX update to support both examples -->
 <!-- XXX add mention to tutorial intro -->
 
-To start, create an `example` directory where our example app and tools will
-live, and enter that directory.
+To run the example in our [two](/chapters/noop-sandbox.md)
+[part](/chapters/wasm-sandbox.md)tutorial, , create an `example` directory
+where our example app and tools will live, and enter that directory:
 
 ```bash
-mkdir example ; cd example
+mkdir example
+cd example
 ```
 
 Then follow the instruction for [setting up the RLBox environment](./rlbox-install.md).
@@ -51,7 +53,3 @@ cmake -S . -B ./build
 cmake --build ./build --target all
 cd ..
 ```
-
-Now we have everything we need to get started.
-
-
