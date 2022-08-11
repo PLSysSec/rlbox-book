@@ -1,13 +1,15 @@
 ## Setting up our tutorial environment
 
-XXX update to support both examples
-XXX add mention to tutorial intro
+<!-- XXX update to support both examples -->
+<!-- XXX add mention to tutorial intro -->
 
-To start, create an `example` directory where our example app and tools will
-live, and enter that directory.
+To run the example in our [two](/chapters/noop-sandbox.md)
+[part](/chapters/wasm-sandbox.md)tutorial, , create an `example` directory
+where our example app and tools will live, and enter that directory:
 
 ```bash
-mkdir example ; cd example
+mkdir example
+cd example
 ```
 
 Next, clone the repo for this book, which contains our example code, and copy it
@@ -49,7 +51,3 @@ cmake -S . -B ./build
 cmake --build ./build --target all
 cd ..
 ```
-
-Now we have everything we need to get started.
-
-
