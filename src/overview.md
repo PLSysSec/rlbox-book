@@ -87,13 +87,14 @@ reference/pointer to sandbox memory.
 
 To ensure that application code doesn't unsafely use values that originate in
 the sandbox -- and may thus be under the control of an attacker -- RLBox
-considers all such values as untrusted and [taints](chapters/api/tainted.md)
-them. Tainted values are essentially opaque values (though RLBox does provide
-some basic operators on tainted values). To use a tainted value, you must
-unwrap it by (typically) copying the value into application memory -- and thus
-out of the reach of the attacker -- and *verifying* it. Indeed, RLBox forces
-application code to perform the copy and verification in sync using
-verification functions (see [this chapter](chapers/api/tainted.md)).
+considers all such values as untrusted and
+[taints](https://shravanrn.com/oldrlboxdocs/#tainted-values) them. Tainted
+values are essentially opaque values (though RLBox does provide some basic
+operators on tainted values). To use a tainted value, you must unwrap it by
+(typically) copying the value into application memory -- and thus out of the
+reach of the attacker -- and *verifying* it. Indeed, RLBox forces application
+code to perform the copy and verification in sync using verification functions
+(see [this](https://shravanrn.com/oldrlboxdocs/#id15)).
 
 ### References
 
