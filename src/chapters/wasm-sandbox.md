@@ -41,9 +41,10 @@ differences how our examples are built.
 
 ## Our example Makefile
 
-Doing all of these steps a command at a time would be terribly tedious. Instead,
-we automate all these steps with a simple make file. Lets take a look at
-our full make file, then walk through each part.
+Doing all of these steps a command at a time would be terribly tedious.
+Instead, we automate all these steps with a simple make file. Lets take a look
+at our full [Makefile](examples/wasm-hello-example/Makefile), then walk through
+each part.
 
 ```Makefile
 {{#include examples/wasm-hello-example/Makefile}}
@@ -76,8 +77,7 @@ instead of the system `libc`. The wasi-libc library and headers live in
 Also note worthy are the `$(WASM_CFLAGS)` which are important to ensure that
 our output plays nicely with the rest of the toolchain.
 
-XXX explain flags
-
+<!-- XXX explain flags -->
 
 Notice the `dummy_main.c` file to keep wasi-clang happy, you can find a copy
 `rlbox_wasm2c_sandbox/_src/wasm2c_sandbox_wrapper.c`
@@ -98,18 +98,18 @@ platform specific code e.g. inline assembly will also fail at this stage.
 Here we use our fork of `wasm2` to generates a `mylib.wasm.c` C file which
 implements and can be linked with an application. 
 
-XXX how do we use mylib.wasm.h
-XXX depends on wasm runtime to provide capabilities required by core wasm api
-e.g. memory allocation to grow heap. wasm-libc will make `system calls` to wasi
-which are implemented by the wasi-runtime.
+<!-- XXX how do we use mylib.wasm.h -->
+<!-- XXX depends on wasm runtime to provide capabilities required by core wasm api -->
+<!-- e.g. memory allocation to grow heap. wasm-libc will make `system calls` to wasi -->
+<!-- which are implemented by the wasi-runtime. -->
 
 The wasi runtime that ships with wasm2c at present implements only
 a subset of the Wasi API and denies all access to the file system 
 and network. 
 
 
-***Note***: While RLBox currently only works with our fork of `wasm2c` we hope
-to upstream our changes to `wasm2c` in the near future.
+> **Note**: While RLBox currently only works with our fork of `wasm2c` we
+> hope to upstream our changes to `wasm2c` in the near future.
 
 
 ### Step 3: Compiling and linking our application with our library
@@ -118,27 +118,7 @@ to upstream our changes to `wasm2c` in the near future.
 {{#include examples/wasm-hello-example/Makefile:35:37}}
 ```
 
-XXX not our .c and .h files
-XXX explain seperate library compile and link step
-XXX explain wasi and wasm runtime
-XXX files and headers
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!-- XXX not our .c and .h files -->
+<!-- XXX explain seperate library compile and link step -->
+<!-- XXX explain wasi and wasm runtime -->
+<!-- XXX files and headers -->

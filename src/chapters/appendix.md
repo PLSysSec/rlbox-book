@@ -11,7 +11,7 @@
   buggy library is a good next. The solution is available in the solution
   folder in the same repo.
 
-* [Old docs](https://shravanrn.com/oldrlboxdocs) An older version of the documentation of the RLBox APIs.
+* [Documentation](https://shravanrn.com/oldrlboxdocs) of the core RLBox APIs.
 
 * [Short tutorial](https://github.com/ayushagarwal95/tutorial-rlbox) on using
   the RLBox APIs. Note that this tutorial uses the old Lucet Wasm compiler.
