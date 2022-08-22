@@ -15,7 +15,7 @@ WASI_CLANG=$(WASI_SDK_ROOT)/bin/clang
 WASI_SYSROOT=$(WASI_SDK_ROOT)/share/wasi-sysroot
 WASM2C=$(RLBOX_ROOT)/build/_deps/mod_wasm2c-src/bin/wasm2c
 
-#CFLAGS for compiling files output by wasm2co
+#CFLAGS for compiling files to place nice with wasm2c
 WASM_CFLAGS=-Wl,--export-all -Wl,--no-entry -Wl,--growable-table -Wl,--stack-first -Wl,-z,stack-size=1048576
 
 all: mylib.wasm mylib.wasm.c myapp
