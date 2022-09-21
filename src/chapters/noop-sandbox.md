@@ -208,7 +208,6 @@ Run:
 $ ./build/main
 Hello from mylib
 Adding... 3+4 = 7
-Adding... 3+4 = 7
 OK? = 1
 echo: hi hi!
 hello_cb: hi again!

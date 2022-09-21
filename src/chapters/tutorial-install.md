@@ -4,7 +4,7 @@
 <!-- XXX add mention to tutorial intro -->
 
 To run the example in our [two](/chapters/noop-sandbox.md)
-[part](/chapters/wasm-sandbox.md)tutorial, , create an `example` directory
+[part](/chapters/wasm-sandbox.md) tutorial, create an `example` directory
 where our example app and tools will live, and enter that directory:
 
 ```bash

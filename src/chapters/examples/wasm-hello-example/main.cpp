@@ -35,9 +35,6 @@ int main(int argc, char const *argv[]) {
 
 // ANCHOR: add
   // call the add function and check the result:
-  auto val = sandbox.invoke_sandbox_function(add, 3, 4);
-  printf("Adding... 3+4 = %d\n", val);
-
   auto ok = sandbox.invoke_sandbox_function(add, 3, 4)
                    .copy_and_verify([](unsigned ret){
     printf("Adding... 3+4 = %d\n", ret);
