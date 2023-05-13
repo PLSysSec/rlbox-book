@@ -1,1 +1,1 @@
-This example is described [here](https://docs.rlbox.dev/chapters/examples/noop.html).
+This example is described [here](https://rlbox.dev/chapters/noop-sandbox.html).

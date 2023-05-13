@@ -121,14 +121,14 @@ unsafe for us to use tainted data without verification since it could be
 attacker controlled. In this particular case, though, we just want to copy data
 (`helloStr` specifically) to `taintedStr`. We do this by using the
 `unverified_safe_pointer_because` to essentially cast `taintedStr` to a `char*`
-the without any verification. This is safe because we are just copying
+without any verification. This is safe because we are just copying
 `helloStr` to sandbox memory: at worst, the sandboxed library can overwrite the
 memory region pointed to by `taintedStr` and crash when it tries to print
 it.[^note-1]
 
 
 > **Note:** Internally, `unverified_safe_pointer_because` is not actual just a
-> cast. It also ensures (1) that the the pointer is within the sandbox and that
+> cast. It also ensures (1) that the pointer is within the sandbox and that
 > (2) accessing `helloSize` bytes off the pointer would stay within the sandbox
 > boundary.
 
@@ -176,7 +176,7 @@ This verifier moves the string is not null and if it's length is less than 1KB.
 In the callback we simply print this string.
 
 Let's now continue back in `main`. To `call_cb` with the callback with first
-need o register the callback -- otherwise RLBox will disallow the
+need to register the callback -- otherwise RLBox will disallow the
 library-application call -- and pass the callback to the `call_cb` function:
 
 ```cpp
