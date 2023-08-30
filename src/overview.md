@@ -11,16 +11,17 @@ The RLBox toolkit consists of:
 1. A C++ framework (RLBox) that makes it easy to retrofit existing application
    code to safely interface with sandboxed libraries.
 
-2. A Wasm backend (based on wasm2c) for isolating (sandboxing) C libraries.
+2. An RLBox plugin that allows the use of wasm2c compiler for isolating
+   (sandboxing) C libraries with Wasm.
 
-In this section, we provide an overview of the RLbox framework, its reason for
+In this section, we provide an overview of the RLBox framework, its reason for
 being, and a high level sketch of how it works.  In the [next
 section](./tutorial.md), we will provide a tutorial that provides an end-to-end
-example of applying RLbox to a simple application.
+example of applying RLBox to a simple application.
 
 ### Why RLBox
 
-Work on RLbox began several years ago while attempting to add fine grain
+Work on RLBox began several years ago while attempting to add fine grain
 isolation third party libraries in the Firefox renderer. Initially we attempted
 this process without any support from a framwork like RLBox, instead attempting
 to manually deal with all the details sandboxing such as sanitizing untrusted
@@ -35,7 +36,7 @@ to sandbox new library, let alone maintain existing ones.
 
 So we scrapped this manual approach and build RLBox[^RLBoxPaper].
 
-RLbox automates many of the low level details of sandboxing and allows you, as a
+RLBox automates many of the low level details of sandboxing and allows you, as a
 security engineer or application developer, to instead focus just on what you
 need to do to sandbox your particular application.
 

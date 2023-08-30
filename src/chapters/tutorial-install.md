@@ -42,7 +42,7 @@ hello_cb: hi again!
 ```
 
 Finally, return to the `example` directory, and clone and build our wasm toolchain,
-which includes fork of `wasm2c`, the wasi-sdk (everything you need to compile
+which includes a copy of `wasm2c`, the wasi-sdk (everything you need to compile
 your C to wasm).
 
 ```bash

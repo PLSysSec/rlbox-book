@@ -60,7 +60,7 @@ To start we can see our Makefile begins with RLBOX_ROOT:
 
 Which just specificies where our `rlbox_wasm2c_sandbox` repo's root directory
 lives. This repo contains all the tools we will need build our sandboxed library
-e.g. `wasm2c`, our wasi-sdk (which CMake downloads), RLbox, etc.
+e.g. `wasm2c`, wasi-sdk (which CMake downloads), RLBox, etc.
 
 ### Step 1: Compiling our library to Wasm
 
@@ -95,22 +95,17 @@ platform specific code e.g. inline assembly will also fail at this stage.
 ```
 
 
-Here we use our fork of `wasm2` to generates a `mylib.wasm.c` C file which
-implements and can be linked with an application. 
+Here we use  `wasm2c` to generates a `mylib.wasm.c` C file which implements and
+can be linked with an application. 
 
 <!-- XXX how do we use mylib.wasm.h -->
 <!-- XXX depends on wasm runtime to provide capabilities required by core wasm api -->
 <!-- e.g. memory allocation to grow heap. wasm-libc will make `system calls` to wasi -->
 <!-- which are implemented by the wasi-runtime. -->
 
-The wasi runtime that ships with wasm2c at present implements only
-a subset of the Wasi API and denies all access to the file system 
-and network. 
-
-
-> **Note**: While RLBox currently only works with our fork of `wasm2c` we
-> hope to upstream our changes to `wasm2c` in the near future.
-
+The wasi runtime that ships with the rlbox_wasm2c_sandbox plugin at present
+implements only a subset of the Wasi API and denies all access to the file
+system and network.
 
 ### Step 3: Compiling and linking our application with our library
 

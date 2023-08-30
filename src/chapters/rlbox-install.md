@@ -7,16 +7,16 @@ which you can grab with:
 git clone git@github.com:PLSysSec/rlbox.git
 ```
 
-The other, which contains our modified version of `wasm2c` and related backend
-tools, for converting your C library to an isolated and sandboxed version can
-be grabbed with:
+The other, which contains the RLBox plugin for Wasm files compiled with the
+`wasm2c` compiler (which converts your C library to an isolated and sandboxed
+version) can be grabbed with:
 
 ```bash
 git clone https://github.com/PLSysSec/rlbox_wasm2c_sandbox
 ```
 
-This repo contains our modified version of wasm2c, a wasm runtime (and very
-limited wasi runtime), and pulls down a copy of the wasi-sdk and the rlbox
+This repo contains the plugin, a wasm runtime (and very limited wasi runtime),
+and pulls down a copy of the wasi-sdk, the wasm2c compiler, and the rlbox
 framework as part of its build process, providing a single location for all our
 tools, which is handy for example purposes and getting started.
 
