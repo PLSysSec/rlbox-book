@@ -22,19 +22,19 @@ example of applying RLBox to a simple application.
 ### Why RLBox
 
 Work on RLBox began several years ago while attempting to add fine grain
-isolation third party libraries in the Firefox renderer. Initially we attempted
-this process without any support from a framwork like RLBox, instead attempting
-to manually deal with all the details sandboxing such as sanitizing untrusted
+isolation to third party libraries in the Firefox renderer. Initially we attempted
+this process without any support from a framework like RLBox, instead attempting
+to manually deal with all the details of sandboxing such as sanitizing untrusted
 inputs, and reconciling ABI differences between the sandbox and host
 application.
 
-This went poorly, it was tedious, error prone, and did nothing to abstract the
+This went poorly; it was tedious, error prone, and did nothing to abstract the
 details of the underlying sandbox from the developer. We had basically no hope
 that this would result in code that was maintainable, or that normal Mozilla
 developers who were unfamiliar with the gory details of our system would be able
-to sandbox new library, let alone maintain existing ones.
+to sandbox a new library, let alone maintain existing ones.
 
-So we scrapped this manual approach and build RLBox[^RLBoxPaper].
+So we scrapped this manual approach and built RLBox[^RLBoxPaper].
 
 RLBox automates many of the low level details of sandboxing and allows you, as a
 security engineer or application developer, to instead focus just on what you
@@ -87,13 +87,13 @@ structures, however, must (again) be passed by *sandbox-reference*, i.e., via a
 reference/pointer to sandbox memory.
 
 To ensure that application code doesn't unsafely use values that originate in
-the sandbox -- and may thus be under the control of an attacker -- RLBox
+the sandbox - and may thus be under the control of an attacker - RLBox
 considers all such values as untrusted and
 [taints](https://shravanrn.com/oldrlboxdocs/#tainted-values) them. Tainted
 values are essentially opaque values (though RLBox does provide some basic
 operators on tainted values). To use a tainted value, you must unwrap it by
-(typically) copying the value into application memory -- and thus out of the
-reach of the attacker -- and *verifying* it. Indeed, RLBox forces application
+(typically) copying the value into application memory - and thus out of the
+reach of the attacker - and *verifying* it. Indeed, RLBox forces application
 code to perform the copy and verification in sync using verification functions
 (see [this](https://shravanrn.com/oldrlboxdocs/#id15)).
 

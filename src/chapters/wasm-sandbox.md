@@ -6,11 +6,11 @@ isolation. To finish sandboxing your library, we will need to.
 1. Update the application `main.cpp` to use the `wasm2c` sandbox backend instead
    of `noop`.
 
-2. Compile our library e.g. `mylib.c` to wasm i.e. `mylib.wasm` -- adding
+2. Compile our library e.g. `mylib.c` to wasm i.e. `mylib.wasm` - adding
    isolation to your library.
 
 3. Compile that resulting `mylib.wasm` file to C (`mylib.wasm.c` and `mylib.wasm.h`)
-   with the `wasm2c` compiler -- allow it to be compiled and linked with our
+   with the `wasm2c` compiler - allow it to be compiled and linked with our
    application.
 
 4. Compile and link the sandboxed library and our application.
@@ -58,7 +58,7 @@ To start we can see our Makefile begins with RLBOX_ROOT:
 {{#include examples/wasm-hello-example/Makefile:0}}
 ```
 
-Which just specificies where our `rlbox_wasm2c_sandbox` repo's root directory
+Which just specifies where our `rlbox_wasm2c_sandbox` repo's root directory
 lives. This repo contains all the tools we will need build our sandboxed library
 e.g. `wasm2c`, wasi-sdk (which CMake downloads), RLBox, etc.
 
@@ -114,6 +114,6 @@ system and network.
 ```
 
 <!-- XXX not our .c and .h files -->
-<!-- XXX explain seperate library compile and link step -->
+<!-- XXX explain separate library compile and link step -->
 <!-- XXX explain wasi and wasm runtime -->
 <!-- XXX files and headers -->
