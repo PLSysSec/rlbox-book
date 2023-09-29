@@ -191,7 +191,7 @@ chapter.
 Clone this books' repository:
 
 ```bash
-git clone git@github.com:PLSysSec/rlbox-book.git
+git clone https://github.com/PLSysSec/rlbox-book
 cd rlbox-book/src/chapters/examples/noop-hello-example
 ```
 

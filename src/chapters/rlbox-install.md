@@ -4,7 +4,7 @@ RLBox currently spans two repositories. One that contains just the RLBox C++ fra
 which you can grab with:
 
 ```bash
-git clone git@github.com:PLSysSec/rlbox.git
+git clone https://github.com/PLSysSec/rlbox
 ```
 
 The other, which contains the RLBox plugin for Wasm files compiled with the
@@ -32,7 +32,7 @@ need to compile your library from C to wasm) be found
 
 To quickly install the RLBox repo, you can run the following:
 ```bash
-git clone git@github.com:PLSysSec/rlbox.git
+git clone https://github.com/PLSysSec/rlbox
 cd rlbox
 cmake -S . -B ./build -DCMAKE_BUILD_TYPE=Release
 cmake --build ./build --config Release --parallel

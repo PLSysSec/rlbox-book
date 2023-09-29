@@ -18,7 +18,7 @@ Next, clone the repo for this book, which contains our example code, and copy it
 to its own directory, and build the example code.
 
 ```bash
-git clone git@github.com:PLSysSec/rlbox-book.git
+git clone https://github.com/PLSysSec/rlbox-book
 mkdir myapp
 cp -r rlbox-book/src/chapters/examples/noop-hello-example/* myapp
 cd myapp
