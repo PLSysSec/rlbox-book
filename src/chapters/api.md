@@ -97,7 +97,7 @@ application from using tainted values unsafely.
 .. doxygenclass:: rlbox::tainted
 
 RLBox has several kinds of tainted values, beyond `tainted <tainted>`.
-Thse, however, are slightly less pervasive in the surface API.
+These, however, are slightly less pervasive in the surface API.
 
 .. _tainted_volatile:
 .. doxygenclass:: rlbox::tainted_volatile
@@ -166,10 +166,10 @@ These functions are also available for `callback <callback>`
 
 Operating on tainted values
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Unwrapping tainted values requires care -- getting a verifier wrong could lead
+Unwrapping tainted values requires care - getting a verifier wrong could lead
 to a security vulnerability. It's also not cheap: we need to copy data to the
 application memory to ensure that the sandboxed code cannot modify the data
-we're tyring to verify. Lucikly, it's not always necessary to copy and verify:
+we're trying to verify. Luckily, it's not always necessary to copy and verify:
 sometimes we can compute on tainted values directly. To this end, RLBox defines
 different kinds of operators on tainted values, which produce tainted values.
 This allows you to perform some computations on tainted values, pass the values
@@ -203,7 +203,7 @@ unwrap the result:
 * Operators ``==``, ``!=`` on tainted pointers is allowed if the rhs is
   ``nullptr_t`` and return unwrapped ``bool``.
 
-* Operator ``!`` on tainted pointers retruns an unwrapped ``bool``.
+* Operator ``!`` on tainted pointers returns an unwrapped ``bool``.
 
 * Operators ``==``, ``!=``, ``!`` on non-pointer tainted values return a
   ``tainted<bool>``
@@ -214,7 +214,7 @@ unwrap the result:
 * Operators ``&&`` and ``||`` on booleans are only permitted when arguments are
   variables (not expressions). This is because C++ does not permit safe
   overloading of && and || operations with expression arguments as this affects
-  the short circuiting behaviour of these operations.
+  the short circuiting behavior of these operations.
 
 Application-sandbox shared memory
 ---------------------------------

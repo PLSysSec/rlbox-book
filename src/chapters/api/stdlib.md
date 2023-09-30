@@ -1,7 +1,7 @@
 # Standard library
 
 RLBox provides several helper functions to application for handling tainted data
-(memory influenced by or located in sandoxed regions) similar to the C/C++
+(memory influenced by or located in sandboxed regions) similar to the C/C++
 standard library. We list a few of these below; they operate similar to the
 standard library equivalents, but they accept tainted data.
 

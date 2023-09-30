@@ -1,6 +1,6 @@
 # Additional material
 
-* The best example of how to user RLBox is to see its use in Firefox. The
+* The best example of how to use RLBox is to see its use in Firefox. The
   [Firefox code
   search](https://searchfox.org/mozilla-central/search?q=create_sandbox&path=)
   is a great way to do this.
@@ -18,7 +18,7 @@
 
 * The [RLBox test suite](https://github.com/PLSysSec/rlbox_sandboxing_api/tree/master/code/tests) itself has a number of examples.
 
-* Finally, the original academic paper explaning the RLBox and its use in
+* Finally, the original academic paper explaining RLBox and its use in
   Firefox
   [RLBoxPaper](https://www.usenix.org/conference/usenixsecurity20/presentation/narayan)
   at the USENIX Security 2020 and the accompanying [video

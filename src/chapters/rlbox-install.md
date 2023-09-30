@@ -1,15 +1,15 @@
 # Setting up your RLBox environment.
 
-RLBox current spans two repositories. One that contains just the RLBox C++ framework
+RLBox currently spans two repositories. One that contains just the RLBox C++ framework
 which you can grab with:
 
 ```bash
-git clone git@github.com:PLSysSec/rlbox.git
+git clone https://github.com/PLSysSec/rlbox
 ```
 
 The other, which contains the RLBox plugin for Wasm files compiled with the
 `wasm2c` compiler (which converts your C library to an isolated and sandboxed
-version) can be grabbed with:
+version), can be grabbed with:
 
 ```bash
 git clone https://github.com/PLSysSec/rlbox_wasm2c_sandbox
@@ -20,7 +20,7 @@ and pulls down a copy of the wasi-sdk, the wasm2c compiler, and the rlbox
 framework as part of its build process, providing a single location for all our
 tools, which is handy for example purposes and getting started.
 
-Many folks perfer to do a system wide or per-user install of the wasi-sdk and
+Many folks prefer to do a system wide or per-user install of the wasi-sdk and
 RLBox. The latest releases of the wasi-sdk (which will given you everything you
 need to compile your library from C to wasm) be found
 [here](https://github.com/WebAssembly/wasi-sdk/releases).
@@ -32,7 +32,7 @@ need to compile your library from C to wasm) be found
 
 To quickly install the RLBox repo, you can run the following:
 ```bash
-git clone git@github.com:PLSysSec/rlbox.git
+git clone https://github.com/PLSysSec/rlbox
 cd rlbox
 cmake -S . -B ./build -DCMAKE_BUILD_TYPE=Release
 cmake --build ./build --config Release --parallel

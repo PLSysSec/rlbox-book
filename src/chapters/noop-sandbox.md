@@ -57,7 +57,7 @@ typically generic in the sandbox type (e.g., `rlbox::tainted<T,
 sandbox_type>`); macros like `RLBOX_DEFINE_BASE_TYPES_FOR` define simpler types
 for us (e.g., we can use `tainted_mylib<T>`). In this simple example we only
 use the noop sandbox; we walk through how you modify this code to use Wasm [in
-the next chaper](/chapters/wasm-sandbox.md).
+the next chapter](/chapters/wasm-sandbox.md).
 
 ### Creating sandboxes and calling sandboxed functions
 
@@ -132,7 +132,7 @@ it.[^note-1]
 > (2) accessing `helloSize` bytes off the pointer would stay within the sandbox
 > boundary.
 
-It's worth mentionig that the string `"writing to region"` does not have any
+It's worth mentioning that the string `"writing to region"` does not have any
 special meaning in the code. Rather the RLBox API asks you to provide a
 free-form string that acts as documentation. Essentially you are providing a
 string that says _it is safe to remove the tainting from this type because..._
@@ -172,12 +172,12 @@ string we need to verify it. To do this, we use the string verification function
     });
 ```
 
-This verifier moves the string is not null and if it's length is less than 1KB.
+This verifier moves the string if it is not null and if its length is less than 1KB.
 In the callback we simply print this string.
 
-Let's now continue back in `main`. To `call_cb` with the callback with first
-need to register the callback -- otherwise RLBox will disallow the
-library-application call -- and pass the callback to the `call_cb` function:
+Let's now continue back in `main`. To `call_cb` with the callback we first
+need to register the callback - otherwise RLBox will disallow the
+library-application call - and pass the callback to the `call_cb` function:
 
 ```cpp
 {{#include examples/noop-hello-example/main.cpp:call_cb}}
@@ -191,7 +191,7 @@ chapter.
 Clone this books' repository:
 
 ```bash
-git clone git@github.com:PLSysSec/rlbox-book.git
+git clone https://github.com/PLSysSec/rlbox-book
 cd rlbox-book/src/chapters/examples/noop-hello-example
 ```
 

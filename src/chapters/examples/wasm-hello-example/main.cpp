@@ -5,6 +5,9 @@
 // All calls into the sandbox are resolved statically.
 #define RLBOX_USE_STATIC_CALLS() rlbox_wasm2c_sandbox_lookup_symbol
 
+// Provide the wasm2c module a name
+#define RLBOX_WASM2C_MODULE_NAME mylib
+
 #include <stdio.h>
 #include <cassert>
 #include "mylib.h"

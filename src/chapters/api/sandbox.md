@@ -1,1 +1,1 @@
-# Creating, managing, and destroying sandboxe
+# Creating, managing, and destroying sandboxes
