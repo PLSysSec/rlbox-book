@@ -9,14 +9,17 @@ WASI_SDK_ROOT=$(RLBOX_ROOT)/build/_deps/wasiclang-src/
 
 #location of our wasi/wasm runtime
 WASM2C_RUNTIME_PATH=$(RLBOX_ROOT)/build/_deps/mod_wasm2c-src/wasm2c
-WASI_RUNTIME_FILES=$(addprefix $(WASM2C_RUNTIME_PATH), /wasm-rt-impl.c /wasm-rt-os-win.c  /wasm-rt-os-unix.c  /wasm-rt-wasi.c)
+WASI_RUNTIME_FILES=$(addprefix $(WASM2C_RUNTIME_PATH), /wasm-rt-impl.c)
+
+#Some more wasi/wasm runtime files
+WASM2C_RUNTIME_FILES=$(addprefix $(RLBOX_ROOT)/src, /wasm2c_rt_minwasi.c /wasm2c_rt_mem.c)
 
 WASI_CLANG=$(WASI_SDK_ROOT)/bin/clang
 WASI_SYSROOT=$(WASI_SDK_ROOT)/share/wasi-sysroot
 WASM2C=$(RLBOX_ROOT)/build/_deps/mod_wasm2c-src/bin/wasm2c
 
 #CFLAGS for compiling files to place nice with wasm2c
-WASM_CFLAGS=-Wl,--export-all -Wl,--no-entry -Wl,--growable-table -Wl,--stack-first -Wl,-z,stack-size=1048576
+WASM_CFLAGS=-Wl,--export-all -Wl,--stack-first -Wl,-z,stack-size=262144 -Wl,--no-entry -Wl,--growable-table -Wl,--import-memory -Wl,--import-table
 
 all: mylib.wasm mylib.wasm.c myapp
 
@@ -33,5 +36,5 @@ mylib.wasm.c: mylib.wasm
 
 #Step 3: compiling and linking our application with our library
 myapp: mylib.wasm.c
-	$(CC) -c $(WASI_RUNTIME_FILES) -I$(RLBOX_INCLUDE) -I$(RLBOX_ROOT)/include -I$(WASM2C_RUNTIME_PATH) mylib.wasm.c
+	$(CC) -c $(WASI_RUNTIME_FILES) $(WASM2C_RUNTIME_FILES) -I$(RLBOX_INCLUDE) -I$(RLBOX_ROOT)/include -I$(WASM2C_RUNTIME_PATH) mylib.wasm.c
 	$(CXX) -std=c++17 main.cpp -o myapp -I$(RLBOX_INCLUDE) -I$(RLBOX_ROOT)/include -I$(WASM2C_RUNTIME_PATH) *.o -lpthread
