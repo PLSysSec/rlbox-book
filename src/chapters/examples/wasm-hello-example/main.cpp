@@ -15,6 +15,7 @@
 #include "rlbox.hpp"
 #include "rlbox_wasm2c_sandbox.hpp"
 
+#define release_assert(cond, msg) if (!(cond)) { fputs(msg, stderr); abort(); }
 
 using namespace std;
 using namespace rlbox;
@@ -78,7 +79,7 @@ int main(int argc, char const *argv[]) {
 void hello_cb(rlbox_sandbox_mylib& _, tainted_mylib<const char*> str) {
   auto checked_string =
     str.copy_and_verify_string([](unique_ptr<char[]> val) {
-        assert(val != nullptr && strlen(val.get()) < 1024);
+        release_assert(val != nullptr && strlen(val.get()) < 1024);
         return move(val);
     });
   printf("hello_cb: %s\n", checked_string.get());

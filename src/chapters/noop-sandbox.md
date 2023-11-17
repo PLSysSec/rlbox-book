@@ -167,7 +167,7 @@ string we need to verify it. To do this, we use the string verification function
 
 ```cpp
     str.copy_and_verify_string([](unique_ptr<char[]> val) {
-        assert(val != nullptr && strlen(val.get()) < 1024);
+        release_assert(val != nullptr && strlen(val.get()) < 1024, "val is null or greater than 1024\n");
         return move(val);
     });
 ```
