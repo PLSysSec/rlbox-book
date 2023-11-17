@@ -9,6 +9,8 @@
 #include <rlbox/rlbox.hpp>
 #include <rlbox/rlbox_noop_sandbox.hpp>
 
+#define release_assert(cond, msg) if (!(cond)) { fputs(msg, stderr); abort(); }
+
 #include "mylib.h"
 
 using namespace std;
@@ -33,9 +35,6 @@ int main(int argc, char const *argv[]) {
 
 // ANCHOR: add
   // call the add function and check the result:
-  auto val = sandbox.invoke_sandbox_function(add, 3, 4);
-  printf("Adding... 3+4 = %d\n", val);
-
   auto ok = sandbox.invoke_sandbox_function(add, 3, 4)
                    .copy_and_verify([](unsigned ret){
     printf("Adding... 3+4 = %d\n", ret);
@@ -76,7 +75,7 @@ int main(int argc, char const *argv[]) {
 void hello_cb(rlbox_sandbox_mylib& _, tainted_mylib<const char*> str) {
   auto checked_string =
     str.copy_and_verify_string([](unique_ptr<char[]> val) {
-        assert(val != nullptr && strlen(val.get()) < 1024);
+        release_assert(val != nullptr && strlen(val.get()) < 1024, "val is null or greater than 1024\n");
         return move(val);
     });
   printf("hello_cb: %s\n", checked_string.get());
