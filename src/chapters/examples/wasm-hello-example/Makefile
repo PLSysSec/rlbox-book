@@ -9,7 +9,7 @@ WASI_SDK_ROOT=$(RLBOX_ROOT)/build/_deps/wasiclang-src/
 
 #location of our wasi/wasm runtime
 WASM2C_RUNTIME_PATH=$(RLBOX_ROOT)/build/_deps/mod_wasm2c-src/wasm2c
-WASI_RUNTIME_FILES=$(addprefix $(WASM2C_RUNTIME_PATH), /wasm-rt-impl.c)
+WASI_RUNTIME_FILES=$(addprefix $(WASM2C_RUNTIME_PATH), /wasm-rt-impl.c /wasm-rt-mem-impl.c)
 
 #Some more wasi/wasm runtime files
 WASM2C_RUNTIME_FILES=$(addprefix $(RLBOX_ROOT)/src, /wasm2c_rt_minwasi.c /wasm2c_rt_mem.c)
