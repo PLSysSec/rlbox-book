@@ -79,7 +79,7 @@ int main(int argc, char const *argv[]) {
 void hello_cb(rlbox_sandbox_mylib& _, tainted_mylib<const char*> str) {
   auto checked_string =
     str.copy_and_verify_string([](unique_ptr<char[]> val) {
-        release_assert(val != nullptr && strlen(val.get()) < 1024);
+        release_assert(val != nullptr && strlen(val.get()) < 1024, "val is null or greater than 1024\n");
         return move(val);
     });
   printf("hello_cb: %s\n", checked_string.get());
