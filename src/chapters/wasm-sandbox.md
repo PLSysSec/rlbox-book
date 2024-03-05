@@ -76,8 +76,12 @@ wasi-clang will link wasi-libc (a custom version of musl) with your library
 instead of the system `libc`. The wasi-libc library and headers live in
 `$WASI_SYSROOT`
 
-Also note worthy are the `$(WASM_CFLAGS)` which are important to ensure that
-our output plays nicely with the rest of the toolchain.
+Also note worthy are the `$(WASM_CFLAGS)` which are important to ensure that our
+output plays nicely with the rest of the toolchain. By default, the flags we use
+forces the Wasm module to use an "imported" memory allocation and "imported"
+indirection function table that is created by RLBox for optimal performance.
+(See [Using a Wasm module with imported memory and imported tables](./wasm-exported-sandbox.md)
+for other options)
 
 <!-- XXX explain flags -->
 

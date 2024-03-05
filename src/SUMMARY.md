@@ -8,4 +8,5 @@
   - [Installing and running tutorial examples](./chapters/tutorial-install.md)
 - [Additional resources](./chapters/additional.md)
   - [Modifying a project that uses Make to compile to Wasm](./chapters/makefile-wasm.md)
+  - [Using a Wasm module with imported memory and imported tables](./chapters/wasm-exported-sandbox.md)
   - [More tutorials](chapters/appendix.md)
