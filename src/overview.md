@@ -64,14 +64,14 @@ library. The figure below illustrates this idea.
 
 Memory isolation is enforced by the underlying sandboxing mechanism (e.g.,
 using Wasm[^RLBoxFirefox]) from the start, when you create the sandbox with
-[`create_sandbox()`](chapters/api/sandbox.md). Explicit boundary
+`create_sandbox()`. Explicit boundary
 crossings are enforced by RLBox (either at compile- or and run-time). For
 example, with RLBox you can't call library functions directly; instead, you
-must use the [`invoke_sandbox_function()`](chapters/api/function.md) method. Similarly, the library cannot
+must use the `invoke_sandbox_function()` method. Similarly, the library cannot
 call arbitrary Firefox functions; instead, it can only call functions that you
-expose with the [`register_callback()`](chapters/api/callback.md)
+expose with the `register_callback()`
 method. (To simplify the sandboxing task, though, RLBox does expose a standard
-library as described in the [Standard Library](chapters/api/stdlib.md).)
+library as described in the Standard Library.)
 
 When calling a library function, RLBox copies simple values into the sandbox
 memory before calling the function. For larger data types, such as structs and
@@ -79,7 +79,7 @@ arrays, you can't simply pass a pointer to the object. This would leak
 [ASLR](https://en.wikipedia.org/wiki/Address_space_layout_randomization) and,
 more importantly, would not work: sandboxed code cannot access application
 memory.  So, you must explicitly allocate memory in the sandbox via
-[`malloc_in_sandbox()`](chapters/api/memory.md) and copy application
+`malloc_in_sandbox()` and copy application
 data to this region of memory (e.g., via ``strlcpy``).
 
 RLBox similarly copies simple return values and callback arguments. Larger data
