@@ -1,5 +1,10 @@
 # Enforcing isolation with the LFI sandbox
 
+> **Note**: this section is written as a continuation of the tutorial as an
+> alternate to using RLBox with [wasm2c](/chapters/tutorial/wasm-sandbox.md).
+> It's best if you follow the tutorial upto that point and continue reading
+> below.
+
 The `noop` backend makes it easy to add security checks. However, it does not
 enforce isolation. To finish sandboxing your library, we will need to:
 
