@@ -1,7 +1,7 @@
 # Adding isolation with the Wasm sandbox backend
 
 The `noop` backend makes it easy to add security checks. However, it does not enforce
-isolation. To finish sandboxing your library, we will need to.
+isolation. To finish sandboxing your library, we will need to:
 
 1. Update the application `main.cpp` to use the `wasm2c` sandbox backend instead
    of `noop`.

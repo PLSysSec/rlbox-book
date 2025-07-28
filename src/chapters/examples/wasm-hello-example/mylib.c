@@ -5,7 +5,7 @@ void hello() {
   printf("Hello from mylib\n");
 }
 
-unsigned add(unsigned a, unsigned b) {
+unsigned int add(unsigned int a, unsigned int b) {
   return a + b;
 }
 

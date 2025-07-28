@@ -1,3 +1,4 @@
+// ANCHOR: imports
 // We're going to use RLBox in a single-threaded environment.
 #define RLBOX_SINGLE_THREADED_INVOCATIONS
 
@@ -25,13 +26,17 @@ RLBOX_DEFINE_BASE_TYPES_FOR(mylib, wasm2c);
 void hello_cb(rlbox_sandbox_mylib& _, tainted_mylib<const char*> str);
 
 int main(int argc, char const *argv[]) {
+// ANCHOR_END: imports
+// ANCHOR: hello
   // Declare and create a new sandbox
   rlbox_sandbox_mylib sandbox;
   sandbox.create_sandbox();
 
   // Call the library hello function:
   sandbox.invoke_sandbox_function(hello);
+// ANCHOR_END: hello
 
+// ANCHOR: add
   // Call the add function and check the result:
   auto ok = sandbox.invoke_sandbox_function(add, 3, 4)
                    .copy_and_verify([](unsigned ret){
@@ -39,7 +44,9 @@ int main(int argc, char const *argv[]) {
     return ret == 7;
   });
   printf("OK? = %d\n", ok);
+// ANCHOR_END: add
 
+// ANCHOR: echo-pre
   // Call the library echo function
   const char* helloStr = "hi hi!";
   size_t helloSize = strlen(helloStr) + 1;
@@ -47,20 +54,28 @@ int main(int argc, char const *argv[]) {
   strncpy(taintedStr
             .unverified_safe_pointer_because(helloSize, "writing to region")
          , helloStr, helloSize);
+// ANCHOR_END: echo-pre
+// ANCHOR: echo
   sandbox.invoke_sandbox_function(echo, taintedStr);
   sandbox.free_in_sandbox(taintedStr);
+// ANCHOR_END: echo
 
+// ANCHOR: call_cb
   // register callback
   auto cb = sandbox.register_callback(hello_cb);
   // Call the library function passing the callback function hello_cb
   sandbox.invoke_sandbox_function(call_cb, cb);
+// ANCHOR_END: call_cb
 
+// ANCHOR: main-end
   // destroy sandbox
   sandbox.destroy_sandbox();
 
   return 0;
 }
+// ANCHOR_END: main-end
 
+// ANCHOR: callback
 void hello_cb(rlbox_sandbox_mylib& _, tainted_mylib<const char*> str) {
   auto checked_string =
     str.copy_and_verify_string([](unique_ptr<char[]> val) {
@@ -69,3 +84,4 @@ void hello_cb(rlbox_sandbox_mylib& _, tainted_mylib<const char*> str) {
     });
   printf("hello_cb: %s\n", checked_string.get());
 }
+// ANCHOR_END: callback

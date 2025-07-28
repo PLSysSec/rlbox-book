@@ -7,6 +7,7 @@
 
 using namespace std;
 
+// ANCHOR: imports
 // We're going to use RLBox in a single-threaded environment.
 #define RLBOX_SINGLE_THREADED_INVOCATIONS
 // The fixed configuration line we need to use for the noop sandbox.
@@ -20,28 +21,44 @@ using namespace rlbox;
 
 // Define base type for mylib using the noop sandbox
 RLBOX_DEFINE_BASE_TYPES_FOR(mylib, noop);
+// ANCHOR_END: imports
 
 // Declare callback function that's going to be invoked from the library.
 void hello_cb(rlbox_sandbox_mylib& _, tainted_mylib<const char*> str);
 
 int main(int argc, char const *argv[]) {
+// ANCHOR: create
   // Declare and create a new sandbox
   rlbox_sandbox_mylib sandbox;
   sandbox.create_sandbox();
+// ANCHOR_END: create
 
   // Call the library hello function
+// ANCHOR: hello
   sandbox.invoke_sandbox_function(hello);
+// ANCHOR_END: hello
 
 int array[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 // Call the library add function
+// ANCHOR: add
   auto ret = sandbox.invoke_sandbox_function(add, 3, 4)
+// ANCHOR_END: add
+// ANCHOR: add-copy-and-verify
                    .copy_and_verify([](unsigned val){
+// ANCHOR_END: add-copy-and-verify
+// ANCHOR: add-verifier
     release_assert(val < 10, "Unexpected result");
+// ANCHOR_END: add-verifier
+// ANCHOR: add-copy-and-verify-close
     return val;
   });
+// ANCHOR_END: add-copy-and-verify-close
+// ANCHOR: add-tainted-use
   auto array_val = array[ret];
+// ANCHOR_END: add-tainted-use
   printf("Got array value %d\n", ret);
 
+// ANCHOR: echo-pre
   // Call the library echo function
   const char* helloStr = "hi hi!";
   size_t helloSize = strlen(helloStr) + 1;
@@ -49,20 +66,28 @@ int array[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
   strncpy(taintedStr
             .unverified_safe_pointer_because(helloSize, "writing to region")
          , helloStr, helloSize);
+// ANCHOR_END: echo-pre
+// ANCHOR: echo
   sandbox.invoke_sandbox_function(echo, taintedStr);
   sandbox.free_in_sandbox(taintedStr);
+// ANCHOR_END: echo
 
+// ANCHOR: call_cb
   // register callback
   auto cb = sandbox.register_callback(hello_cb);
   // Call the library function call_cb, passing in the callback hello_cb
   sandbox.invoke_sandbox_function(call_cb, cb);
+// ANCHOR_END: call_cb
 
+// ANCHOR: destroy
   // destroy sandbox
   sandbox.destroy_sandbox();
+// ANCHOR_END: destroy
 
   return 0;
 }
 
+// ANCHOR: callback
 void hello_cb(rlbox_sandbox_mylib& _, tainted_mylib<const char*> str) {
   auto checked_string =
     str.copy_and_verify_string([](unique_ptr<char[]> val) {
@@ -71,3 +96,4 @@ void hello_cb(rlbox_sandbox_mylib& _, tainted_mylib<const char*> str) {
     });
   printf("hello_cb: %s\n", checked_string.get());
 }
+// ANCHOR_END: callback
