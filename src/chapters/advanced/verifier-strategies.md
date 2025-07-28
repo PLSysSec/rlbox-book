@@ -55,5 +55,13 @@ compilation error, you can be assured it is safe and you can defer this.
 
 ## Strategy 2: Verification for local use
 
+Another option is to simply verify a tainted variable for one use case at a
+time. Rather than verifying the tainted value for the rest of the program,
+verify it for the next use case only, and do not remove the tainting.
+
 ## Strategy 3: Enforce the library contract
+
+Finally, in scenarios where a library's security contract is clearly defined for
+an output, you could use this a verifier for the tainted data as soon as it is
+returned by a sandboxed function.
 
