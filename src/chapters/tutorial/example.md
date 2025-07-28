@@ -34,7 +34,7 @@ The main application in [main.cpp](../../examples/hello-example/main.cpp) simply
 To build this example on your machine, run the following commands
 
 ```bash
-cd cd rlbox-book/src/chapters/examples/hello-example
+cd rlbox-book/src/examples/hello-example
 cmake -S . -B ./build -DCMAKE_BUILD_TYPE=Debug
 cmake --build ./build --config Debug --parallel
 ```

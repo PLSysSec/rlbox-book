@@ -3,7 +3,7 @@
 To build this example on your machine, run the following commands
 
 ```bash
-cd cd rlbox-book/src/chapters/examples/noop-hello-example
+cd rlbox-book/src/examples/noop-hello-example
 cmake -S . -B ./build -DCMAKE_BUILD_TYPE=Debug
 cmake --build ./build --config Debug --parallel
 ```

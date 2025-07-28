@@ -1,7 +1,7 @@
-# Adding isolation with the Wasm sandbox backend
+# Enforcing isolation with the Wasm2c sandbox
 
-The `noop` backend makes it easy to add security checks. However, it does not enforce
-isolation. To finish sandboxing your library, we will need to:
+The `noop` backend makes it easy to add security checks. However, it does not
+enforce isolation. To finish sandboxing your library, we will need to:
 
 1. Update the application `main.cpp` to use the `wasm2c` sandbox backend instead
    of `noop`.
@@ -112,7 +112,7 @@ After we download these repos, we can then take the following steps
 To build this example on your machine, run the following commands
 
 ```bash
-cd cd rlbox-book/src/chapters/examples/wasm-hello-example
+cd rlbox-book/src/examples/wasm-hello-example
 cmake -S . -B ./build -DCMAKE_BUILD_TYPE=Debug
 cmake --build ./build --config Debug --parallel
 ```
