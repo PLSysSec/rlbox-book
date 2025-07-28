@@ -6,16 +6,16 @@ library called ``mylib``.
 
 ### Our example library
 
-``mylib`` declares four functions in [mylib.h](../examples/hello-example/mylib.h):
+``mylib`` declares four functions in [mylib.h](../../examples/hello-example/mylib.h):
 
 ```c
-{{#include ../examples/hello-example/mylib.h}}
+{{#include ../../examples/hello-example/mylib.h}}
 ```
 
-And implements those function in [mylib.c](../examples/hello-example/mylib.c):
+And implements those function in [mylib.c](../../examples/hello-example/mylib.c):
 
 ```c
-{{#include ../examples/hello-example/mylib.c}}
+{{#include ../../examples/hello-example/mylib.c}}
 ```
 
 
@@ -25,10 +25,10 @@ registering and handling callbacks from the library in the next chapters.
 
 ### Our example application
 
-The main application in [main.cpp](../examples/hello-example/main.cpp) simply invokes each of these functions in turn.
+The main application in [main.cpp](../../examples/hello-example/main.cpp) simply invokes each of these functions in turn.
 
 ```cpp
-{{#include ../examples/hello-example/main.cpp}}
+{{#include ../../examples/hello-example/main.cpp}}
 ```
 
 

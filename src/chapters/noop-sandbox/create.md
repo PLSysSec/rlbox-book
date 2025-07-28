@@ -5,7 +5,7 @@ To get started, in our main application
 library and add some necessary boilerplate in the top of the file:
 
 ```cpp
-{{#include ../examples/noop-hello-example/main-withanchors.cpp:imports}}
+{{#include ../../examples/noop-hello-example/main-withanchors.cpp:imports}}
 ```
 
 **Why the boilerplate?**
@@ -52,13 +52,13 @@ Now that the boilerplate is out of the way, let's create a new sandbox instance
 in the top of the main function that we will use in this application.
 
 ```cpp
-{{#include ../examples/noop-hello-example/main-withanchors.cpp:create}}
+{{#include ../../examples/noop-hello-example/main-withanchors.cpp:create}}
 ```
 
 and destroy the sandbox at the end of main
 
 ```cpp
-{{#include ../examples/noop-hello-example/main-withanchors.cpp:destroy}}
+{{#include ../../examples/noop-hello-example/main-withanchors.cpp:destroy}}
 ```
 
 > **Note**: We can create multiple sandbox instances if we wanted. You can think

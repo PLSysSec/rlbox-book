@@ -9,7 +9,7 @@ Instead, we must allocate a buffer in sandbox memory and copy the string we
 want to pass to `echo` into this region:
 
 ```cpp
-{{#include ../examples/noop-hello-example/main-withanchors.cpp:echo-pre}}
+{{#include ../../examples/noop-hello-example/main-withanchors.cpp:echo-pre}}
 ```
 
 Here `taintedStr` is a tainted string: it lives in the sandbox memory and could
@@ -40,7 +40,7 @@ error in the application so it's safe to remove the taint.
 Now, we can just call the function and free the allocated string:
 
 ```cpp
-{{#include ../examples/noop-hello-example/main-withanchors.cpp:echo}}
+{{#include ../../examples/noop-hello-example/main-withanchors.cpp:echo}}
 ```
 
 > **Sneak peak of upcoming feature:** In an upcoming version of RLBox
@@ -55,7 +55,7 @@ Finally, let's call the `call_cb` function. To do this, let's first define a
 callback for the function to call. We declared our callback in the boilerplate, but never defined the function. So let's do that at the end of the file:
 
 ```cpp
-{{#include ../examples/noop-hello-example/main-withanchors.cpp:callback}}
+{{#include ../../examples/noop-hello-example/main-withanchors.cpp:callback}}
 ```
 
 This callback is called with a tainted string. To actually use the tainted
@@ -77,7 +77,7 @@ need to register the callback - otherwise RLBox will disallow the
 library-application call - and pass the callback to the `call_cb` function:
 
 ```cpp
-{{#include ../examples/noop-hello-example/main-withanchors.cpp:call_cb}}
+{{#include ../../examples/noop-hello-example/main-withanchors.cpp:call_cb}}
 ```
 
 ### Build and run
