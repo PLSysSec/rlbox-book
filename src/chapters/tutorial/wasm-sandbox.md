@@ -23,7 +23,7 @@ Show below is a diff of ``main.cpp`` in our first example (using the `noop`
 sandbox backend) and in our current example (using the `wasm2c` backend).
 
 ```
-{{#include examples/wasm-hello-example/main-diff.txt}}
+{{#include ../examples/wasm-hello-example/main-diff.txt}}
 ```
 
 As you can see, most of what has changed is renaming a few key instances of
@@ -49,7 +49,7 @@ at our full [Makefile](examples/wasm-hello-example/Makefile), then walk through
 each part.
 
 ```Makefile
-{{#include examples/wasm-hello-example/Makefile}}
+{{#include ../examples/wasm-hello-example/Makefile}}
 ```
 
 ### Definitions
@@ -57,7 +57,7 @@ each part.
 To start we can see our Makefile begins with RLBOX_ROOT: 
 
 ```Makefile
-{{#include examples/wasm-hello-example/Makefile:0}}
+{{#include ../examples/wasm-hello-example/Makefile:0}}
 ```
 
 Which just specifies where our `rlbox_wasm2c_sandbox` repo's root directory
@@ -67,7 +67,7 @@ e.g. `wasm2c`, wasi-sdk (which CMake downloads), RLBox, etc.
 ### Step 1: Compiling our library to Wasm
 
 ```Makefile
-{{#include examples/wasm-hello-example/Makefile:30:31}}
+{{#include ../examples/wasm-hello-example/Makefile:30:31}}
 ```
 
 Here we are building our library to wasm. Typically you will just want to update
@@ -97,7 +97,7 @@ platform specific code e.g. inline assembly will also fail at this stage.
 ### Step 2: Using `wasm2c` to generate our sandboxed library
 
 ```Makefile
-{{#include examples/wasm-hello-example/Makefile:34:35}}
+{{#include ../examples/wasm-hello-example/Makefile:34:35}}
 ```
 
 
@@ -116,7 +116,7 @@ system and network.
 ### Step 3: Compiling and linking our application with our library
 
 ```Makefile
-{{#include examples/wasm-hello-example/Makefile:38:40}}
+{{#include ../examples/wasm-hello-example/Makefile:38:40}}
 ```
 
 <!-- XXX not our .c and .h files -->

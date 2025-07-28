@@ -4,15 +4,15 @@ In this tutorial we will walk you through the steps of adding sandboxing to a
 very simple application and library. However, all the basic step generalize to
 more complex examples.
 
-We will start by describing the [simple application](./chapters/example.md) that
+We will start by describing the [simple application](./example.md) that
 uses a library, and then describe how to sandbox this in two parts.
 
-- In the [first part](./chapters/noop-sandbox.md), we will look at how to use
+- In the [first part](./noop-sandbox.md), we will look at how to use
 RLBox to retrofit sandboxing in an existing application, taking all the steps to
 ensure that control flow and data flow across the application library boundary
 are secure.
 
-- In the [second part](/chapters/wasm-sandbox.md), we will look at how to
+- In the [second part](./wasm-sandbox.md), we will look at how to
 re-build our library with wasm and link this into our application, so our
 library is isolated.
 

@@ -47,7 +47,7 @@ There are also operations that are not allowed for safety reasons
   condition, `for` loops with tainted values in the condition.
 
 You can learn more about this in the advanced topics
-[chapter](/chapters/tainted-computations.md)
+[chapter](./tainted-computations.md)
 
 Trying to figure out what operations are allowed or not may seem tricky, but
 there is a straightforward approach. Try the operation! If RLBox doesn't throw a

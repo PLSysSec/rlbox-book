@@ -1,4 +1,4 @@
-<p style="text-align:center"><img src="images/rlbox-logo.svg" alt="RLBox" /></p>
+<p style="text-align:center"><img src="/images/rlbox-logo.svg" alt="RLBox" /></p>
 
 # Overview
 
@@ -59,7 +59,7 @@ ensures that the library cannot, for example, corrupt Firefox's address space.
 It also ensures that Firefox cannot inadvertently expose sensitive data to the
 library. The figure below illustrates this idea.
 
-<p style="text-align:center"><img src="images/arch.svg" alt="RLBox explicitly isolates the library data and control flow from the application" /></p>
+<p style="text-align:center"><img src="/images/arch.svg" alt="RLBox explicitly isolates the library data and control flow from the application" /></p>
 
 
 Memory isolation is enforced by the underlying sandboxing mechanism (e.g.,
