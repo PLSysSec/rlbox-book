@@ -5,7 +5,7 @@ to modify the callback to have a signature that RLBox permits. Currently the
 callback looks like this:
 
 ```cpp
-{{#include ../../examples/hello-example/main-withanchors.cpp:callback}}
+{{#include ../../../examples/hello-example/main-withanchors.cpp:callback}}
 ```
 
 To modify this to a signature RLBox will allow, we need to
@@ -16,7 +16,7 @@ To modify this to a signature RLBox will allow, we need to
 With this change, the callback will now look like
 
 ```cpp
-{{#include ../../examples/noop-hello-example/main-withanchors.cpp:callback-signature}}
+{{#include ../../../examples/noop-hello-example/main-withanchors.cpp:callback-signature}}
 ```
 
 
@@ -39,7 +39,7 @@ need to register the callback - otherwise RLBox will disallow the
 library-application call - and pass the callback to the `call_cb` function:
 
 ```cpp
-{{#include ../../examples/noop-hello-example/main-withanchors.cpp:call_cb}}
+{{#include ../../../examples/noop-hello-example/main-withanchors.cpp:call_cb}}
 ```
 
 Note that `cb` here is an RAII type. Meaning the callback is automatically

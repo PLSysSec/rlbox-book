@@ -5,13 +5,13 @@ We now move on to sandboxing the function calls made by the application to
 library.
 
 ```cpp
-{{#include ../../examples/hello-example/main-withanchors.cpp:hello}}
+{{#include ../../../examples/hello-example/main-withanchors.cpp:hello}}
 ```
 
 To sandbox this call, this is as simple as changing the syntax to:
 
 ```cpp
-{{#include ../../examples/noop-hello-example/main-withanchors.cpp:hello}}
+{{#include ../../../examples/noop-hello-example/main-withanchors.cpp:hello}}
 ```
 
 We have changed our code to not call `hello()` directly. Instead, we use RLBox's
@@ -25,13 +25,13 @@ Let's now sandbox the call to the `add` function. We can see the our application
 calls the `add` function as shown below.
 
 ```cpp
-{{#include ../../examples/hello-example/main-withanchors.cpp:add-context}}
+{{#include ../../../examples/hello-example/main-withanchors.cpp:add-context}}
 ```
 
 To change, the function call, we will use `invoke_sandbox_function` as before.
 
 ```cpp
-{{#include ../../examples/noop-hello-example/main-withanchors.cpp:add}}
+{{#include ../../../examples/noop-hello-example/main-withanchors.cpp:add}}
 ```
 
 There are now a couple of interesting things happening.
@@ -54,10 +54,10 @@ call to `copy_and_verify()` so we can unwrap `ret` from a
 verifier.
 
 ```cpp
-{{#include ../../examples/noop-hello-example/main-withanchors.cpp:add}}
-{{#include ../../examples/noop-hello-example/main-withanchors.cpp:add-copy-and-verify}}
+{{#include ../../../examples/noop-hello-example/main-withanchors.cpp:add}}
+{{#include ../../../examples/noop-hello-example/main-withanchors.cpp:add-copy-and-verify}}
     // .. to be specified ..
-{{#include ../../examples/noop-hello-example/main-withanchors.cpp:add-copy-and-verify-close}}
+{{#include ../../../examples/noop-hello-example/main-withanchors.cpp:add-copy-and-verify-close}}
 ```
 
 In the next chapter, we will discuss what we can put in the verifier to ensure

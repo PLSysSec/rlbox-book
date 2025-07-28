@@ -10,7 +10,7 @@ copy the string we want to pass to `echo` into this region. We can do this with
 the following code:
 
 ```cpp
-{{#include ../../examples/noop-hello-example/main-withanchors.cpp:echo-pre}}
+{{#include ../../../examples/noop-hello-example/main-withanchors.cpp:echo-pre}}
 ```
 
 Here `taintedStr` is a tainted string: it lives in the sandbox memory and could
@@ -32,5 +32,5 @@ boundary.
 Now, we can just call the function and free the allocated string:
 
 ```cpp
-{{#include ../../examples/noop-hello-example/main-withanchors.cpp:echo}}
+{{#include ../../../examples/noop-hello-example/main-withanchors.cpp:echo}}
 ```
