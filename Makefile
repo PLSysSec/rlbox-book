@@ -13,10 +13,13 @@ book:
 test:
 	cmake -S src/examples/hello-example -B src/examples/hello-example/build -DCMAKE_BUILD_TYPE=Debug
 	cmake --build src/examples/hello-example/build --config Debug --parallel
+	src/examples/hello-example/build/main
 	cmake -S src/examples/noop-hello-example -B src/examples/noop-hello-example/build -DCMAKE_BUILD_TYPE=Debug
 	cmake --build src/examples/noop-hello-example/build --config Debug --parallel
+	src/examples/noop-hello-example/build/main
 	cmake -S src/examples/wasm-hello-example -B src/examples/wasm-hello-example/build -DCMAKE_BUILD_TYPE=Debug
 	cmake --build src/examples/wasm-hello-example/build --config Debug --parallel
+	src/examples/wasm-hello-example/build/main
 
 serve: book
 	mdbook serve

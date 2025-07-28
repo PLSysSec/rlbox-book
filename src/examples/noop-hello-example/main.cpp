@@ -61,7 +61,8 @@ int array[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
   return 0;
 }
 
-void hello_cb(rlbox_sandbox_mylib& _, tainted_mylib<const char*> str) {
+void hello_cb(rlbox_sandbox_mylib& sandbox, tainted_mylib<const char*> str)
+{
   release_assert(str != nullptr, "Expected value for string");
   auto checked_string =
     str.copy_and_verify_string([](unique_ptr<char[]> val) {
