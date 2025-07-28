@@ -9,7 +9,7 @@
       - [Verifying tainted values](./chapters/noop-sandbox/verifier.md)
       - [Handling tainted strings](./chapters/noop-sandbox/strings.md)
       - [Handling callbacks](./chapters/noop-sandbox/callbacks.md)
-      - [Build and run](./chapters/noop-sandbox/run.md)
+      - [Building and running](./chapters/noop-sandbox/run.md)
   - [Enforcing isolation with the `wasm2c` sandbox](./chapters/tutorial/wasm-sandbox.md)
 - [Advanced RLBox topics](./chapters/advanced.md)
   - [Tainted computations](./chapters/advanced/tainted-computations.md)

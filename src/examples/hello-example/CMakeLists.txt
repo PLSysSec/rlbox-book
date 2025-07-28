@@ -5,6 +5,9 @@ project(rlbox_noop_example
 	VERSION 0.1
 	DESCRIPTION "RLBox rlbox_noop_example")
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 include(FetchContent)
 
 FetchContent_Declare(rlbox
