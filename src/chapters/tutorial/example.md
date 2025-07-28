@@ -31,7 +31,6 @@ The main application in [main.cpp](../../examples/hello-example/main.cpp) simply
 {{#include ../../examples/hello-example/main.cpp}}
 ```
 
-
 To build this example on your machine, run the following commands
 
 ```bash
@@ -47,6 +46,7 @@ Then run it to make sure everything is working.
 ```
 
 You should see the following output:
+
 ```bash
 Hello from mylib
 Got array value 7

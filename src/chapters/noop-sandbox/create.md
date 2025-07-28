@@ -1,7 +1,7 @@
 # Creating a noop sandbox
 
 To get started, in our main application
-([main.cpp](examples/hello-example/main.cpp)) let's first import the RLBox
+([main.cpp](/examples/hello-example/main.cpp)) let's first import the RLBox
 library and add some necessary boilerplate in the top of the file:
 
 ```cpp

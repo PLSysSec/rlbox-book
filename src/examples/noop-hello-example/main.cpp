@@ -46,9 +46,7 @@ int array[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
   const char* helloStr = "hi hi!";
   size_t helloSize = strlen(helloStr) + 1;
   tainted_mylib<char*> taintedStr = sandbox.malloc_in_sandbox<char>(helloSize);
-  strncpy(taintedStr
-            .unverified_safe_pointer_because(helloSize, "writing to region")
-         , helloStr, helloSize);
+  strncpy(sandbox, taintedStr, helloStr, helloSize);
   sandbox.invoke_sandbox_function(echo, taintedStr);
   sandbox.free_in_sandbox(taintedStr);
 
@@ -64,6 +62,7 @@ int array[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 }
 
 void hello_cb(rlbox_sandbox_mylib& _, tainted_mylib<const char*> str) {
+  release_assert(str != nullptr, "Expected value for string");
   auto checked_string =
     str.copy_and_verify_string([](unique_ptr<char[]> val) {
         release_assert(val != nullptr && strlen(val.get()) < 1024, "val is null or greater than 1024\n");

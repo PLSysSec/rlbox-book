@@ -34,7 +34,10 @@ int main(int argc, char const *argv[]) {
   return 0;
 }
 
-void hello_cb(const char* str) {
+// ANCHOR: callback
+void hello_cb(const char* str)
+{
   release_assert(str != nullptr, "Expected value for string");
   printf("hello_cb: %s\n", str);
 }
+// ANCHOR_END: callback

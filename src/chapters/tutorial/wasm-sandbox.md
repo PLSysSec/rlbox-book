@@ -45,7 +45,7 @@ differences how our examples are built.
 
 Doing all of these steps a command at a time would be terribly tedious.
 Instead, we automate all these steps with a simple make file. Lets take a look
-at our full [Makefile](examples/wasm-hello-example/Makefile), then walk through
+at our full [Makefile](/examples/wasm-hello-example/Makefile), then walk through
 each part.
 
 ```Makefile
