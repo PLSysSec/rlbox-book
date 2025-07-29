@@ -30,15 +30,16 @@ You'll probably notice that there are only a handful of changes.
 - We now use `"rlbox_lfi_sandbox.hpp` instead of `rlbox_noop_sandbox.hpp`
 - The sandbox type which is the second parameter to the macro
 `RLBOX_DEFINE_BASE_TYPES_FOR` has now changed to `lfi` from `noop`
-- The boilerplate for `RLBOX_USE_STATIC_CALLS` has been removed as lfi backend
-  doesn't need this
+- The boilerplate for `RLBOX_USE_STATIC_CALLS` has been removed as `lfi` backend
+  doesn't need this, unlike say the [`noop`
+  backend](/chapters/tutorial/noop-sandbox/create.md)
 - The lfi backend/plugin requires an extra piece of boilerplate which is to
-  define the beginning and end of the lfi library that has been linked into the
-  application as a datablob. This is shown as `mylib_start` and `mylib_end`
+  define the beginning and end of the lfi library that has been embedded into
+  the application as a datablob. This is shown as `mylib_start` and `mylib_end`
   here. We will discuss how to generate these variables in the next section.
 
 These are mostly mechanical changes and are straightforward. Modifying the build
-is perhaps slightly more challenging as building wasm libraries involves
+is perhaps slightly more challenging as building lfi libraries involves
 multiple steps.
 
 
@@ -90,17 +91,19 @@ After we download these repos, we can then take the following steps
    in-sandbox runtime `libboxrt`.
 
 3. Next we will create a simple assembly file that just embeds the produced lfi
-   binary in a blob. This can be done easily with a file like
+   binary in a datablob as part of the application. This can be done easily with
+   a file like
    [this](https://github.com/UT-Security/rlbox_lfi_sandbox/blob/main/src/incstub.s)
-   which includes the binary as a blob between two symbols
+   which includes the binary as a datablob between two symbols
    `${INCSTUB_FILENAME}_start` and `${INCSTUB_FILENAME}_end`. We define
    `${INCSTUB_FILENAME}` to be `mylib` in our example, so we get the required
    `mylib_start` and `mylib_end` symbols.
 
-4. Finally, we can now build our application, linking in [binary embedding
-   file](https://github.com/UT-Security/rlbox_lfi_sandbox/blob/main/src/incstub.s),
-   which points to our lfi binary. We also have link in the lfi-runtime's
-   liblfi which is needed to instantiate and destroy sandboxes.
+4. Finally, we can now build our application, and including the file with the
+   [datablob](https://github.com/UT-Security/rlbox_lfi_sandbox/blob/main/src/incstub.s),
+   to embed the lfi-sandboxed library as part of the application. We also have
+   link in the lfi-runtime's liblfi which is needed to instantiate and destroy
+   sandboxes.
 
 ## Building and running the lfi backend
 
