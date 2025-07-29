@@ -89,7 +89,7 @@ add_custom_command(OUTPUT "${LIBLFI_PATH}"
 add_custom_target(build-liblfi ALL DEPENDS ${LIBLFI_PATH})
 
 add_library(liblfi STATIC IMPORTED)
-add_dependencies(liblfi "${LIBLFI_PATH}")
+add_dependencies(liblfi build-liblfi)
 set_target_properties(liblfi PROPERTIES
   IMPORTED_LOCATION "${LIBLFI_PATH}"
   INTERFACE_INCLUDE_DIRECTORIES "${lfi-runtime_SOURCE_DIR}/core/include;${lfi-runtime_SOURCE_DIR}/linux/include"
