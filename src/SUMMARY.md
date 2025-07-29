@@ -3,7 +3,7 @@
 - [Overview](./chapters/overview.md)
 - [Tutorial](./chapters/tutorial.md)
   - [Our example application](./chapters/tutorial/example.md)
-  - [Retrofitting sandboxing in a simple application](./chapters/tutorial/noop-sandbox.md)
+  - [Retrofitting isolation in our example](./chapters/tutorial/noop-sandbox.md)
       - [Creating a noop sandbox](./chapters/tutorial/noop-sandbox/create.md)
       - [Sandboxing function calls](./chapters/tutorial/noop-sandbox/func.md)
       - [Verifying tainted values](./chapters/tutorial/noop-sandbox/verifier.md)

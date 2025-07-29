@@ -1,4 +1,4 @@
-# Retrofitting isolation in a simple application
+# Retrofitting isolation in our example
 
 This first part of the tutorial is going to focus on modify our application to
 add sandboxing, the [next part](./wasm-sandbox.md) will focus on recompiling our
