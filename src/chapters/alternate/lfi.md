@@ -82,11 +82,12 @@ After we download these repos, we can then take the following steps
         -L ${LFI_SYSROOT_PATH} -lboxrt
    ```
 
-   This commands starts by addinf the lfi clang folder to the $PATH.
+   This commands starts by adding the lfi clang folder to the $PATH.
    ${LFI_SBX_BUILD_TYPE_FLAGS} is just going to be `-O0` or `-O3`. LFI requires
    that the `-Wl,--export-dynamic` and `-static-pie` flags are present in the
    compilation so that the produced code is position independent executable that
-   has as a symbol table. Finally the produced elf is linked with LFI's in-sandbox runtime `libboxrt`.
+   has as a symbol table. Finally the produced elf is linked with LFI's
+   in-sandbox runtime `libboxrt`.
 
 3. Next we will create a simple assembly file that just embeds the produced lfi
    binary in a blob. This can be done easily with a file like

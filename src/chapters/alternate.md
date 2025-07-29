@@ -13,7 +13,8 @@ meant purely as a reference for you to write your own plugins.
 
 ## Experimental/previously-used RLBox plugins for isolation
 
-- Using [LFI](https://dl.acm.org/doi/pdf/10.1145/3620665.3640408)\
+- Using [LFI](https://dl.acm.org/doi/pdf/10.1145/3620665.3640408) (More details
+  in this [chapter](./alternate/lfi.md) for more details) \
 [https://github.com/UT-Security/rlbox_lfi_sandbox](https://github.com/UT-Security/rlbox_lfi_sandbox)
 
 - Using WebAssembly through [Lucet](https://github.com/bytecodealliance/lucet)\
