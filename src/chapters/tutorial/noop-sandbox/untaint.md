@@ -1,4 +1,4 @@
-# Verifying tainted values
+# Untainting values
 
 Continuing our example, we need to figure out what values of `ret` are safe,
 and write a verifier that checks that `ret` has one of these safe values.
@@ -47,7 +47,12 @@ verifiers are clearly marked, making them easier to check during a security
 audit. It is also possible that static analysis tools can be configured to
 sanity check the verifiers.
 
+## What are the various untainting APIs that I can use for different types?
+
+We discuss this in more detail in the advanced topics
+[chapter](/chapters/advanced/untainting-apis.md).
+
 ## What happens if we can't figure out a verifier?
 
-We discuss this in more detail in this advanced topics
-[chapter](/chapters/advanced/verifier-strategies.md).
+We discuss this in more detail in the advanced topics
+[chapter](/chapters/advanced/untainting-strategies.md).
