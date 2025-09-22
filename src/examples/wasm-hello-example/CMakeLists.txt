@@ -1,5 +1,7 @@
-cmake_minimum_required(VERSION 3.24)
-cmake_policy(VERSION 3.24)
+cmake_minimum_required(VERSION 3.30)
+
+# TODO: Migrate from FetchContent_Populate
+cmake_policy(SET CMP0169 OLD)
 
 project(rlbox_wasm_example
 	VERSION 0.1
@@ -24,14 +26,30 @@ if(NOT rlbox_wasm2c_sandbox_POPULATED)
   FetchContent_Populate(rlbox_wasm2c_sandbox)
 endif()
 
-if (WIN32)
-  set (wasi-clang-url "https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-21/wasi-sdk-21.0.m-mingw.tar.gz")
-elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-  set (wasi-clang-url "https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-21/wasi-sdk-21.0-macos.tar.gz")
-elseif (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-  set (wasi-clang-url "https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-21/wasi-sdk-21.0-linux.tar.gz")
+string(TOLOWER "${CMAKE_HOST_SYSTEM_PROCESSOR}" CMAKE_HOST_SYSTEM_PROCESSOR_LOWER)
+
+if (${CMAKE_HOST_SYSTEM_PROCESSOR_LOWER} MATCHES "x86_64" OR ${CMAKE_HOST_SYSTEM_PROCESSOR_LOWER} MATCHES "amd64")
+  if (WIN32)
+    set (wasi-clang-url "https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-27/wasi-sdk-27.0-x86_64-windows.tar.gz")
+  elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    set (wasi-clang-url "https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-27/wasi-sdk-27.0-x86_64-macos.tar.gz")
+  elseif (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+    set (wasi-clang-url "https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-27/wasi-sdk-27.0-x86_64-linux.tar.gz")
+  else()
+    message (ERROR "Unknown OS")
+  endif()
+elseif (${CMAKE_HOST_SYSTEM_PROCESSOR_LOWER} MATCHES "arm64")
+  if (WIN32)
+    set (wasi-clang-url "https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-27/wasi-sdk-27.0-arm64-windows.tar.gz")
+  elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    set (wasi-clang-url "https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-27/wasi-sdk-27.0-arm64-macos.tar.gz")
+  elseif (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+    set (wasi-clang-url "https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-27/wasi-sdk-27.0-arm64-linux.tar.gz")
+  else()
+    message (ERROR "Unknown OS")
+  endif()
 else()
-  message (ERROR "Unknown OS")
+  message (ERROR "Unknown arch")
 endif()
 
 FetchContent_Declare(wasiclang
