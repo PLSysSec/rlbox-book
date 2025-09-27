@@ -42,7 +42,10 @@ int main(int argc, char**argv){
 Then you can run the following command
 
 ```bash
-$WASI_SDK_PATH/bin/clang --sysroot $WASI_SDK_PATH/share/wasi-sysroot -o mylib.wasm dummy-main.c -Wl,--whole-archive mylib.a -Wl,--no-whole-archive -Wl,--export-all
+$WASI_SDK_PATH/bin/clang --sysroot $WASI_SDK_PATH/share/wasi-sysroot \
+    -o mylib.wasm dummy-main.c                                       \
+    -Wl,--whole-archive mylib.a -Wl,--no-whole-archive               \
+    -Wl,--export-all
 ```
 
 This compiles a Wasm file with all symbols from the library included and exported.
