@@ -13,6 +13,7 @@
   - [Enforcing isolation with the wasm2c sandbox](./chapters/tutorial/wasm-sandbox.md)
 - [Advanced RLBox topics](./chapters/advanced.md)
   - [Tainted computations](./chapters/advanced/tainted-computations.md)
+  - [Branching on tainted values](./chapters/advanced/tainted-bool.md)
   - [Untainting different types](./chapters/advanced/untainting-apis.md)
   - [Untainting strategies](./chapters/advanced/untainting-strategies.md)
   - [Raw sandbox pointers](./chapters/advanced/raw-sandbox-pointers.md)

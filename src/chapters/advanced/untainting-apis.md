@@ -150,6 +150,26 @@ terminated, and makes a copy of the string that you can use.
 A useful check in `<insert security checks here>` is also to limit the size of
 the string you want to allow.
 
+If you want to convert the above `checked_string` from a
+`std::unique_ptr<char[]>` back to `char*`, you can do this like with ever other
+`unique_ptr`.
+
+```cpp
+char* copied_string = checked_string.release();
+// You should call delete copied_string; when you want to release the memory.
+```
+
+You can also call `copy_and_verify_string` to output `std::string`.
+
+```cpp
+  tainted<char*> str = ...;
+  std::string checked_string =
+    str.copy_and_verify_string([](std::string val) {
+        // <insert security checks here>
+        return val;
+    });
+```
+
 ## Untainting one-level pointers to fundamental types
 
 If you have a tainted pointer to a fundamental type such as `tainted<int*>`,
