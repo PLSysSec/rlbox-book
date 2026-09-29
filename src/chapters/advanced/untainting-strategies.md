@@ -65,3 +65,15 @@ Finally, in scenarios where a library's security contract is clearly defined for
 an output, you could use this a verifier for the tainted data as soon as it is
 returned by a sandboxed function.
 
+## A temporary escape hatch during migration
+
+When migrating a large application, you may need to update one sandboxed call at
+a time before you know how every returned value is used. `UNSAFE_unverified`
+allows you to temporarily remove the tainting so that the surrounding code can
+continue to compile.
+
+This API is not a valid verification strategy: it bypasses verification, and
+is a temporary escape hatch to test your program. The chapter on [using
+`UNSAFE_unverified` during
+migration](/chapters/advanced/unsafe-unverified.md) describes this workflow, its
+risks, and how to temporarily use this API and eventually replace it with a valid untainting API.

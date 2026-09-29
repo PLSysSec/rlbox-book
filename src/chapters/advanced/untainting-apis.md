@@ -22,6 +22,12 @@ fundamental types as the types [built-in to the
 language](https://en.cppreference.com/w/cpp/language/types.html), such as `int`,
 `float` etc.
 
+The APIs below are intended to complete the process of safely removing
+tainting. RLBox also provides `UNSAFE_unverified` as a temporary escape hatch for tainting when
+migrating a large application. See [Using
+`UNSAFE_unverified` during
+migration](/chapters/advanced/unsafe-unverified.md) for details.
+
 ## Untainting fundamental types
 
 These types can be untainted with a verifier of the following form
@@ -111,7 +117,7 @@ empty.
 In this case, we may want to use the byte before **without making a copy**, to
 avoid overheads.
 
-RLBox provides aan API for this called `unverified_safe_pointer_because` which
+RLBox provides an API for this called `unverified_safe_pointer_because` which
 can be used as follows.
 
 ```cpp
@@ -120,14 +126,14 @@ char* raw = a.unverified_safe_pointer_because(10, "Demo of a raw pointer");
 ```
 
 `unverified_safe_pointer_because` takes two parameters. The first is the number
-of bytes in this pointer that you will be accessing. RLBox needs this to ensure
-that these many bytes of the pointer stay within the sandbox boundary. The
-second is a string, that allows the developer to document why they are doing
-this and why its safe. This string does not have any special meaning in the
-code. Rather the RLBox API asks you to provide a free-form string that acts as
-documentation. Essentially you are providing a string that says _it is safe to
-remove the tainting from this type because..._ . Such documentation may be
-useful to other developers who read your code.
+of elements in this pointer that you will be accessing. RLBox uses the element
+type and count to ensure that the entire range stays within the sandbox
+boundary. The second is a string that allows the developer to document why they
+are doing this and why it is safe. This string does not have any special meaning
+in the code. Rather the RLBox API asks you to provide a free-form string that
+acts as documentation. Essentially you are providing a string that says _it is
+safe to remove the tainting from this type because..._ . Such documentation may
+be useful to other developers who read your code.
 
 ## Untainting C-strings
 

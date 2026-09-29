@@ -16,6 +16,7 @@
   - [Branching on tainted values](./chapters/advanced/tainted-bool.md)
   - [Untainting different types](./chapters/advanced/untainting-apis.md)
   - [Untainting strategies](./chapters/advanced/untainting-strategies.md)
+  - [Temporarily disabling tainting](./chapters/advanced/unsafe-unverified.md)
   - [Raw sandbox pointers](./chapters/advanced/raw-sandbox-pointers.md)
   - [Miscellaneous troubleshooting](./chapters/advanced/troubleshooting.md)
 - [Using alternate isolation backends](./chapters/alternate.md)
