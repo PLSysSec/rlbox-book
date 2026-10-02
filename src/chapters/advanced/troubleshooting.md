@@ -18,3 +18,16 @@ You can use `UNSAFE_unverified` to remove the wrapper without casting, but this
 performs no verification or range check. It should only be a temporary measure
 during incremental migration. See [Using `UNSAFE_unverified` during
 migration](/chapters/advanced/unsafe-unverified.md) for details.
+
+## `tainted` has the wrong number of template arguments
+
+The generic `rlbox::tainted` type requires both a value type and a sandbox type,
+so `tainted<int>` produces a "wrong number of template arguments" error. Use the
+library-specific type created by `RLBOX_DEFINE_BASE_TYPES_FOR` instead:
+
+```cpp
+tainted_mylib<int> value = ...;
+```
+
+This is equivalent to `rlbox::tainted<int, rlbox_noop_sandbox>`, but will
+automatically use the sandbox type configured for `mylib`.
