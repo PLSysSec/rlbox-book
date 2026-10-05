@@ -41,18 +41,7 @@ being invoked. For example a function `void foo(unsigned int a)` expects just
 one `unsigned int` argument etc. Passing in a parameter with the wrong type
 would return an error just like C/C++.
 
-```cpp
-enum class number : unsigned int { seven = 7 };
-tainted_mylib<number> x = number::seven;
-sandbox.invoke_sandbox_function(foo, x);
-```
-
-The above would produce an error containing the text "Mismatched arguments types
-for function ... `rlbox::detail::polyfill::is_invocable_v`". This example can be
-fixed by converting `x` to the expected parameter type with
-`rlbox::sandbox_static_cast`. See [Casting tainted
-values](/chapters/advanced/casting-tainted-values.md) for details.
-
-```cpp
-sandbox.invoke_sandbox_function(foo, rlbox::sandbox_static_cast<unsigned int>(x));
+Using the RLBox [Casting
+operations](/chapters/advanced/casting-tainted-values.md) that cast tainted
+values could be helpful to address these errors.
 ```
