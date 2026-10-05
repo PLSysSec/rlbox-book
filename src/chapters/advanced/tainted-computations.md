@@ -9,3 +9,7 @@ RLBox does not permit some operations on tainted values for safety reasons
 - Comparison on the result of dereferencing a tainted pointer. This produces a
   `tainted_bool_hint` as  discussed in the chapter on [tainted
   branching](/chapters/advanced/tainted-bool.md).
+
+RLBox also provides casts that change the wrapped type without removing its
+taint. These are covered in [Casting tainted
+values](/chapters/advanced/casting-tainted-values.md).
